@@ -13,7 +13,7 @@
         :root {
             --bg-base: #050505;
             --bg-surface: #111111;
-            --accent: #00e5ff; /* Ciano tecnológico */
+            --accent: #00e5ff;
             --text-main: #f3f4f6;
             --text-muted: #9ca3af;
             --border: #222222;
@@ -29,7 +29,6 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-base);
             color: var(--text-main);
-            /* Ocultar barra de scroll no ecrã principal para focar no wrapper */
             overflow: hidden; 
             height: 100vh;
         }
@@ -40,7 +39,6 @@
             overflow-y: auto;
             scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
-            /* Esconder barra de scroll mas permitir scroll */
             scrollbar-width: none; 
             -ms-overflow-style: none;
         }
@@ -48,11 +46,10 @@
             display: none;
         }
 
-        /* Cada secção atua como um ecrã completo */
         .screen {
             min-height: 100vh;
             width: 100%;
-            scroll-snap-align: start; /* Faz o snap no início da secção */
+            scroll-snap-align: start;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -60,12 +57,10 @@
             position: relative;
         }
 
-        /* Cores alternadas subtis de fundo para distinguir secções */
         .screen:nth-child(even) {
             background-color: var(--bg-surface);
         }
 
-        /* Limitador de largura para o conteúdo não esticar demasiado */
         .content-wrapper {
             max-width: 1000px;
             width: 100%;
@@ -378,7 +373,6 @@
             color: var(--accent);
         }
 
-        /* Indicador de scroll animado (Apenas no ecrã 1) */
         .scroll-indicator {
             position: absolute;
             bottom: 40px;
@@ -413,7 +407,7 @@
             .skills-container, .timeline-wrapper {
                 grid-template-columns: 1fr;
             }
-            .nav-dots { display: none; } /* Esconder navegação flutuante em mobile */
+            .nav-dots { display: none; }
             .hero-layout { flex-direction: column; text-align: center; padding-top: 2rem;}
             .social-links { justify-content: center; }
             .screen { padding: 4rem 1.5rem; height: auto; min-height: 100vh; }
@@ -437,7 +431,7 @@
         <section class="screen" id="home">
             <div class="content-wrapper hero-layout">
                 <div class="profile-img-container">
-                    <img src="image_1d61ce.png" alt="Guilherme Aires" class="profile-img">
+                    <img src="Portefolio.jpeg" alt="Guilherme Aires" class="profile-img">
                 </div>
                 <div class="hero-text">
                     <h1>Guilherme Aires</h1>
