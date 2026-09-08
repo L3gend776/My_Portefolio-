@@ -513,12 +513,19 @@
             background: var(--accent-green);
         }
 
-        /* --- ECRÃ 3: FEATURED PROJECTS (ESTILO GALERIA ACCORDION COM CARDS VERTICAIS À ESQUERDA) --- */
+        /* --- ECRÃ 3: FEATURED PROJECTS (CARDS INDIVIDUAIS INTERATIVOS) --- */
         #projects {
             padding: 4rem 6rem;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
+        }
+
+        .content-container {
+            max-width: 1150px;
+            width: 100%;
+            padding: 0 1rem;
+            z-index: 2;
         }
 
         .projects-header {
@@ -544,181 +551,117 @@
             color: var(--accent-green);
         }
 
-        .projects-gallery-wrapper {
-            display: flex;
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
-            width: 100%;
-            max-width: 1250px;
-            height: 58vh;
-            margin: 0 auto;
-            align-items: center;
+            max-height: 72vh;
+            overflow-y: auto;
+            padding-right: 0.5rem;
         }
+        .projects-grid::-webkit-scrollbar { width: 4px; }
+        .projects-grid::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-        /* Cartões Verticais à Esquerda */
-        .projects-vertical-tabs {
-            flex: 1.2;
-            display: flex;
-            gap: 1rem;
-            height: 100%;
-        }
-
-        .vertical-tab-card {
-            flex: 1;
+        .project-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 1.5rem 1rem;
+            border-radius: 16px;
+            padding: 1.8rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
 
-        .vertical-tab-card:hover {
-            border-color: rgba(0, 210, 138, 0.5);
-            transform: translateY(-4px);
-        }
-
-        .vertical-tab-card.active {
-            border-color: var(--accent-green);
-            background: rgba(0, 210, 138, 0.05);
-            box-shadow: 0 0 25px rgba(0, 210, 138, 0.15);
-        }
-
-        .vertical-tab-number {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 900;
-            color: var(--text-muted);
-            transition: 0.3s;
-        }
-
-        .vertical-tab-card.active .vertical-tab-number {
-            color: var(--accent-green);
-        }
-
-        .vertical-tab-info h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.95rem;
-            margin-bottom: 0.3rem;
-            color: var(--text-main);
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            margin: 0 auto;
-        }
-
-        .vertical-tab-info span {
-            font-size: 0.7rem;
-            color: var(--accent-green);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: block;
-            margin-top: 0.5rem;
-        }
-
-        /* Painel Ativo de Detalhes à Direita */
-        .project-active-panel {
-            flex: 1.8;
-            background: var(--card-bg);
-            border: 1px solid rgba(0, 210, 138, 0.4);
-            border-radius: 20px;
-            padding: 3rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 40px rgba(0, 210, 138, 0.08);
-            transition: all 0.4s ease;
-        }
-
-        .project-active-panel::before {
+        .project-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 4px;
+            top: 0; left: 0; width: 100%; height: 3px;
             background: linear-gradient(90deg, var(--accent-green), var(--accent-purple));
+            transform: scaleX(0);
+            transition: 0.3s ease;
         }
 
-        .active-project-tag {
-            font-size: 0.85rem;
-            color: var(--accent-green);
-            font-family: 'Space Grotesk', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.8rem;
-            display: inline-block;
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 210, 138, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 210, 138, 0.08);
+        }
+        .project-card:hover::before {
+            transform: scaleX(1);
         }
 
-        .active-project-title {
+        .project-card h3 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.4rem;
-            font-weight: 900;
-            margin-bottom: 1.2rem;
+            font-size: 1.4rem;
+            margin-bottom: 0.4rem;
             color: var(--text-main);
         }
 
-        .active-project-desc {
+        .project-tag {
+            font-size: 0.78rem;
+            color: var(--accent-green);
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 1rem;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-card p {
             color: var(--text-muted);
-            font-size: 1.05rem;
-            line-height: 1.7;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.55;
+        }
+
+        .project-card ul {
+            list-style: none;
+            padding-left: 0;
             margin-bottom: 1.5rem;
         }
 
-        .active-project-list {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .active-project-list li {
+        .project-card ul li {
             color: #d1d5db;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
+            font-size: 0.82rem;
+            margin-bottom: 0.4rem;
             position: relative;
             padding-left: 1.2rem;
         }
-
-        .active-project-list li::before {
+        .project-card ul li::before {
             content: '>';
             position: absolute;
             left: 0;
             color: var(--accent-green);
         }
 
-        .btn-live-demo {
+        .project-link-btn {
             display: inline-flex;
             align-items: center;
             gap: 0.6rem;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--border);
-            padding: 0.8rem 1.8rem;
+            padding: 0.65rem 1.4rem;
             border-radius: 30px;
             color: var(--text-main);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
             transition: all 0.3s ease;
             align-self: flex-start;
         }
 
-        .btn-live-demo:hover {
+        .project-link-btn:hover {
             border-color: var(--accent-green);
             background-color: rgba(0, 210, 138, 0.1);
             color: var(--accent-green);
+            transform: translateX(3px);
         }
 
         /* --- ECRÃ 4: CONTACT --- */
-        .content-container {
-            max-width: 1100px;
-            width: 100%;
-            padding: 0 2rem;
-            z-index: 2;
-        }
-
         .contact-box {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -773,12 +716,10 @@
             .hero-left, .hero-right, .about-right-content { width: 100%; text-align: center; margin: 0; }
             .hero-right { margin-top: 1rem; }
             .hero-center-img, .about-image-wrapper { height: 45vh; width: 80vw; }
-            .about-cards-grid, .lang-grid, .contact-box { grid-template-columns: 1fr; }
+            .about-cards-grid, .lang-grid, .projects-grid, .contact-box { grid-template-columns: 1fr; }
             .about-header-row { flex-direction: column; align-items: center; gap: 0.5rem; }
-            .projects-gallery-wrapper { flex-direction: column; height: auto; }
-            .projects-vertical-tabs { overflow-x: auto; width: 100%; height: auto; }
-            .vertical-tab-info h4 { writing-mode: horizontal-tb; }
-            #projects { padding: 6rem 2rem; height: auto; }
+            #projects { padding: 6rem 2rem; height: auto; align-items: flex-start; }
+            .projects-grid { max-height: none; overflow-y: visible; }
         }
     </style>
 </head>
@@ -915,66 +856,77 @@
             </div>
         </section>
 
-        <!-- ECRÃ 3: FEATURED PROJECTS (ESTILO ACCORDION COM CARDS VERTICAIS À ESQUERDA) -->
+        <!-- ECRÃ 3: FEATURED PROJECTS (CARDS INDIVIDUAIS INTERATIVOS) -->
         <section class="screen" id="projects">
-            <div class="content-container" style="max-width: 1250px;">
+            <div class="content-container">
                 <div class="projects-header">
                     <span class="creative-works-tag">// CREATIVE WORKS</span>
-                    <h2 class="section-title" style="margin-bottom: 0;">Featured <span>Projects</span></h2>
+                    <h2 class="section-title">Featured <span>Projects</span></h2>
                 </div>
-
-                <div class="projects-gallery-wrapper">
+                
+                <div class="projects-grid">
                     
-                    <!-- Cartões Verticais à Esquerda (Seletores) -->
-                    <div class="projects-vertical-tabs">
-                        
-                        <div class="vertical-tab-card active" onclick="switchProject(0)">
-                            <span class="vertical-tab-number">01</span>
-                            <div class="vertical-tab-info">
-                                <h4>Sequechat</h4>
-                                <span>Kotlin</span>
-                            </div>
-                        </div>
-
-                        <div class="vertical-tab-card" onclick="switchProject(1)">
-                            <span class="vertical-tab-number">02</span>
-                            <div class="vertical-tab-info">
-                                <h4>Humidade</h4>
-                                <span>Python</span>
-                            </div>
-                        </div>
-
-                        <div class="vertical-tab-card" onclick="switchProject(2)">
-                            <span class="vertical-tab-number">03</span>
-                            <div class="vertical-tab-info">
-                                <h4>SequeMusic</h4>
-                                <span>C#</span>
-                            </div>
-                        </div>
-
-                        <div class="vertical-tab-card" onclick="switchProject(3)">
-                            <span class="vertical-tab-number">04</span>
-                            <div class="vertical-tab-info">
-                                <h4>LACC_v2</h4>
-                                <span>Dart</span>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- Painel Ativo de Detalhes à Direita -->
-                    <div class="project-active-panel" id="active-project-panel">
+                    <!-- Card 1: Sequechat -->
+                    <div class="project-card">
                         <div>
-                            <span class="active-project-tag" id="active-tag">Kotlin | Systems & Network Programming</span>
-                            <h3 class="active-project-title" id="active-title">Sequechat</h3>
-                            <p class="active-project-desc" id="active-desc">Real-time, terminal-based messaging application focused on inter-process communication (IPC) and network synchronization.</p>
-                            <ul class="active-project-list" id="active-list">
+                            <h3>Sequechat</h3>
+                            <span class="project-tag">Kotlin | Systems & Network Programming</span>
+                            <p>Real-time, terminal-based messaging application focused on inter-process communication (IPC) and network synchronization.</p>
+                            <ul>
                                 <li>Client-server architecture using standard sockets.</li>
                                 <li>Concurrency control and race condition handling.</li>
                             </ul>
                         </div>
-                        <a href="https://github.com/L3gend776/Sequechat" target="_blank" class="btn-live-demo" id="active-link">
-                            View Repository <i class="fab fa-github" style="margin-left: 0.3rem;"></i> <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+                        <a href="https://github.com/L3gend776/Sequechat" target="_blank" class="project-link-btn">
+                            View Repository <i class="fab fa-github"></i> <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+                        </a>
+                    </div>
+
+                    <!-- Card 2: Sensor de Humidade -->
+                    <div class="project-card">
+                        <div>
+                            <h3>Sensor-de-Humidade</h3>
+                            <span class="project-tag">Python | IoT & Automation</span>
+                            <p>Humidity sensor data monitoring and automation system designed for data gathering and system tracking.</p>
+                            <ul>
+                                <li>Python scripting for hardware data acquisition.</li>
+                                <li>Automation workflows for environmental tracking.</li>
+                            </ul>
+                        </div>
+                        <a href="https://github.com/L3gend776/Sensor-de-Humidade" target="_blank" class="project-link-btn">
+                            View Repository <i class="fab fa-github"></i> <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+                        </a>
+                    </div>
+
+                    <!-- Card 3: SequeMusic -->
+                    <div class="project-card">
+                        <div>
+                            <h3>SequeMusic</h3>
+                            <span class="project-tag">C# | Data Structures & Systems</span>
+                            <p>Optimized media management application centered around sequential data processing and advanced data structures.</p>
+                            <ul>
+                                <li>Advanced data structures (linked lists, custom queues).</li>
+                                <li>Robust file I/O algorithms for metadata parsing.</li>
+                            </ul>
+                        </div>
+                        <a href="https://github.com/L3gend776/SequeMusic" target="_blank" class="project-link-btn">
+                            View Repository <i class="fab fa-github"></i> <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+                        </a>
+                    </div>
+
+                    <!-- Card 4: LACC_v2 -->
+                    <div class="project-card">
+                        <div>
+                            <h3>LACC_v2</h3>
+                            <span class="project-tag">Dart | Application Development</span>
+                            <p>Application development project utilizing modern cross-platform concepts and clean architectural practices.</p>
+                            <ul>
+                                <li>Modular code structure and component design.</li>
+                                <li>Clean user logic implementation.</li>
+                            </ul>
+                        </div>
+                        <a href="https://github.com/L3gend776/LACC_v2" target="_blank" class="project-link-btn">
+                            View Repository <i class="fab fa-github"></i> <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
                         </a>
                     </div>
 
@@ -1024,9 +976,8 @@
 
     </div>
 
-    <!-- Script para o movimento do texto com o rato (Parallax) e Galeria de Projetos Interativa -->
+    <!-- Script para o movimento do texto com o rato (Parallax) -->
     <script>
-        // Parallax do Texto de Fundo (HOME)
         document.addEventListener('mousemove', (e) => {
             const x = (e.clientX / window.innerWidth - 0.5) * 40;
             const y = (e.clientY / window.innerHeight - 0.5) * 40;
@@ -1035,79 +986,6 @@
                 parallaxText.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
             }
         });
-
-        // Dados dos Projetos para a Galeria Interativa
-        const projectsData = [
-            {
-                title: "Sequechat",
-                tag: "Kotlin | Systems & Network Programming",
-                desc: "Real-time, terminal-based messaging application focused on inter-process communication (IPC) and network synchronization.",
-                points: [
-                    "Client-server architecture using standard sockets.",
-                    "Concurrency control and race condition handling."
-                ],
-                link: "https://github.com/L3gend776/Sequechat"
-            },
-            {
-                title: "Sensor-de-Humidade",
-                tag: "Python | IoT & Automation",
-                desc: "Humidity sensor data monitoring and automation system designed for data gathering and system tracking.",
-                points: [
-                    "Python scripting for hardware data acquisition.",
-                    "Automation workflows for environmental tracking."
-                ],
-                link: "https://github.com/L3gend776/Sensor-de-Humidade"
-            },
-            {
-                title: "SequeMusic",
-                tag: "C# | Data Structures & Systems",
-                desc: "Optimized media management application centered around sequential data processing and advanced data structures.",
-                points: [
-                    "Advanced data structures (linked lists, custom queues).",
-                    "Robust file I/O algorithms for metadata parsing."
-                ],
-                link: "https://github.com/L3gend776/SequeMusic"
-            },
-            {
-                title: "LACC_v2",
-                tag: "Dart | Application Development",
-                desc: "Application development project utilizing modern cross-platform concepts and clean architectural practices.",
-                points: [
-                    "Modular code structure and component design.",
-                    "Clean user logic implementation."
-                ],
-                link: "https://github.com/L3gend776/LACC_v2"
-            }
-        ];
-
-        function switchProject(index) {
-            const p = projectsData[index];
-            
-            // Atualizar conteúdo do painel ativo
-            document.getElementById('active-tag').innerText = p.tag;
-            document.getElementById('active-title').innerText = p.title;
-            document.getElementById('active-desc').innerText = p.desc;
-            
-            const listEl = document.getElementById('active-list');
-            listEl.innerHTML = '';
-            p.points.forEach(point => {
-                const li = document.createElement('li');
-                li.innerText = point;
-                listEl.appendChild(li);
-            });
-
-            document.getElementById('active-link').href = p.link;
-
-            // Atualizar classes ativas nos cartões verticais da esquerda
-            const tabs = document.querySelectorAll('.vertical-tab-card');
-            tabs.forEach((tab, i) => {
-                if (i === index) {
-                    tab.classList.add('active');
-                } else {
-                    tab.classList.remove('active');
-                }
-            });
-        }
     </script>
 
 </body>
