@@ -151,23 +151,23 @@
             white-space: nowrap;
         }
 
-        /* Fotografia com fusão perfeita e sem linhas de corte visíveis */
+        /* Fotografia ajustada mais para cima e perfeitamente integrada */
         .hero-center-img {
             position: absolute;
-            bottom: -20px;
+            bottom: 3rem; /* Subiu para a foto ficar mais centrada no ecrã */
             left: 50%;
             transform: translateX(-50%);
-            height: 95vh;
+            height: 82vh; /* Altura ideal para mostrar o rosto completo sem cortes */
             width: auto;
-            min-width: 60vw;
+            max-width: 50vw;
             object-fit: cover;
             object-position: top center;
             z-index: 2;
             pointer-events: none;
-            /* Gradiente radial largo que funde as laterais e a base suavemente no preto puro */
-            -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 35%, rgba(0,0,0,0.6) 65%, transparent 88%);
-            mask-image: radial-gradient(ellipse at 50% 30%, black 35%, rgba(0,0,0,0.6) 65%, transparent 88%);
-            opacity: 0.92;
+            /* Fusão radial suave nas bordas para se misturar perfeitamente no fundo escuro */
+            -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 45%, rgba(0,0,0,0.6) 75%, transparent 92%);
+            mask-image: radial-gradient(ellipse at 50% 30%, black 45%, rgba(0,0,0,0.6) 75%, transparent 92%);
+            opacity: 0.95;
         }
 
         .hero-left {
@@ -481,7 +481,7 @@
             #home { flex-direction: column; padding: 6rem 2rem 2rem; justify-content: flex-start; text-align: center; }
             .hero-left, .hero-right { width: 100%; text-align: center; margin: 0; }
             .hero-right { margin-top: 1rem; }
-            .hero-center-img { height: 50vh; bottom: 0; }
+            .hero-center-img { height: 45vh; bottom: 0; }
             .about-grid, .projects-grid, .contact-box { grid-template-columns: 1fr; gap: 2rem; }
         }
     </style>
@@ -507,7 +507,7 @@
         <section class="screen" id="home">
             <div class="bg-text-massive">PORTFOLIO</div>
 
-            <!-- Imagem com fade radial ultra-suave integrada no fundo escuro -->
+            <!-- Imagem posicionada mais para cima e perfeitamente centrada -->
             <img src="Portefolio.jpeg" alt="Guilherme Aires" class="hero-center-img">
 
             <div class="hero-left">
