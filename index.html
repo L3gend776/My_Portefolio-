@@ -393,7 +393,7 @@
             font-family: monospace;
         }
 
-        /* 4 Cartões de Especialidade */
+        /* 4 Cartões de Especialidade / Stack */
         .about-cards-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -432,7 +432,7 @@
             line-height: 1.3;
         }
 
-        /* Estatísticas em Quadrados Separados (Estilo Referência) */
+        /* Estatísticas sem o tempo a programar */
         .about-stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -453,7 +453,7 @@
 
         .stat-box h3 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--accent-green);
             margin-bottom: 0.1rem;
         }
@@ -537,14 +537,19 @@
         .projects-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 1.5rem;
+            max-height: 75vh;
+            overflow-y: auto;
+            padding-right: 0.5rem;
         }
+        .projects-grid::-webkit-scrollbar { width: 4px; }
+        .projects-grid::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
         .project-card {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 2.5rem;
+            padding: 1.8rem;
             transition: 0.3s;
             position: relative;
             overflow: hidden;
@@ -569,23 +574,23 @@
 
         .project-card h3 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
         }
 
         .project-tag {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--accent-green);
             font-family: 'Space Grotesk', sans-serif;
-            margin-bottom: 1.2rem;
+            margin-bottom: 0.8rem;
             display: block;
         }
 
         .project-card p {
             color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            line-height: 1.6;
+            font-size: 0.88rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
         }
 
         .project-card ul {
@@ -595,8 +600,8 @@
 
         .project-card ul li {
             color: #d1d5db;
-            font-size: 0.85rem;
-            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+            margin-bottom: 0.3rem;
             position: relative;
             padding-left: 1.2rem;
         }
@@ -727,46 +732,46 @@
                 </div>
 
                 <p class="about-bio">
-                    B.Sc. Graduate in Computer Engineering with a strong focus and interest in Networking, IT Infrastructure, and Cybersecurity. High capacity for adapting to new technological challenges.
+                    B.Sc. Graduate in Computer Engineering (IPT) with a strong focus on Networking, Systems Administration, and Cybersecurity. Passionate about building robust technical solutions.
                 </p>
 
-                <!-- 4 Cartões de Competências -->
+                <!-- 4 Pilares de Stack Tecnológico (IPT & Projetos) -->
                 <div class="about-cards-grid">
                     <div class="about-card">
+                        <i class="fas fa-code"></i>
+                        <h4>PROGRAMMING</h4>
+                        <p>C, C++, Java, Python, C#, Kotlin, & Dart development.</p>
+                    </div>
+                    <div class="about-card">
                         <i class="fas fa-network-wired"></i>
-                        <h4>NETWORKING</h4>
-                        <p>Network Engineering, TCP/IP protocols, and infrastructure stability.</p>
+                        <h4>NETWORKS & SYSADMIN</h4>
+                        <p>Linux, Windows Server, TCP/IP, & Infrastructure Security.</p>
                     </div>
                     <div class="about-card">
-                        <i class="fas fa-shield-alt"></i>
-                        <h4>CYBERSECURITY</h4>
-                        <p>Information security and systems administration (Linux & Windows).</p>
+                        <i class="fas fa-database"></i>
+                        <h4>DATABASES & SQL</h4>
+                        <p>Data structures, storage systems, and backend integration.</p>
                     </div>
                     <div class="about-card">
-                        <i class="fas fa-terminal"></i>
-                        <h4>AUTOMATION</h4>
-                        <p>Shell Scripting (Bash) and Python automation workflows.</p>
-                    </div>
-                    <div class="about-card">
-                        <i class="fas fa-server"></i>
-                        <h4>INFRASTRUCTURE</h4>
-                        <p>VMware Virtualization and hardware troubleshooting.</p>
+                        <i class="fas fa-globe"></i>
+                        <h4>WEB & AUTOMATION</h4>
+                        <p>HTML5, CSS3, JavaScript, Bash Shell Scripting & Automation.</p>
                     </div>
                 </div>
 
-                <!-- Estatísticas em Caixas / Quadrados Separados -->
+                <!-- Estatísticas atualizadas (Sem tempo a programar) -->
                 <div class="about-stats">
                     <div class="stat-box">
-                        <h3>2+</h3>
+                        <h3>4+</h3>
                         <p>Projects</p>
                     </div>
                     <div class="stat-box">
-                        <h3>5+</h3>
-                        <p>Years Tech</p>
+                        <h3>B.Sc.</h3>
+                        <p>IPT Graduate</p>
                     </div>
                     <div class="stat-box">
-                        <h3>7+</h3>
-                        <p>Core Skills</p>
+                        <h3>10+</h3>
+                        <p>Technologies</p>
                     </div>
                     <div class="stat-box">
                         <h3>&infin;</h3>
@@ -776,7 +781,7 @@
 
                 <!-- Idiomas -->
                 <div class="languages-section">
-                    <div class="languages-title"><i class="fas fa-globe"></i> Languages I Speak</div>
+                    <div class="languages-title"><i class="fas fa-language"></i> Languages I Speak</div>
                     <div class="lang-grid">
                         <div class="lang-card">
                             <h5>Portuguese</h5>
@@ -799,32 +804,52 @@
             </div>
         </section>
 
-        <!-- ECRÃ 3: PROJECTS -->
+        <!-- ECRÃ 3: PROJECTS (Atualizado com os 4 projetos do GitHub) -->
         <section class="screen" id="projects">
             <div class="content-container">
                 <h2 class="section-title">Featured <span>Projects</span></h2>
                 <div class="projects-grid">
+                    
                     <div class="project-card">
                         <h3>Sequechat</h3>
-                        <span class="project-tag">Systems & Network Programming | Kotlin</span>
-                        <p>Developed a real-time, terminal-based messaging application focused on inter-process communication (IPC) and network synchronization.</p>
+                        <span class="project-tag">Kotlin | Systems & Network Programming</span>
+                        <p>Real-time, terminal-based messaging application focused on inter-process communication (IPC) and network synchronization.</p>
                         <ul>
                             <li>Client-server architecture using standard sockets.</li>
                             <li>Concurrency control and race condition handling.</li>
-                            <li>Low-level memory efficiency and OS integration.</li>
+                        </ul>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>Sensor-de-Humidade</h3>
+                        <span class="project-tag">Python | IoT & Automation</span>
+                        <p>Humidity sensor data monitoring and automation system designed for data gathering and system tracking.</p>
+                        <ul>
+                            <li>Python scripting for hardware data acquisition.</li>
+                            <li>Automation workflows for environmental tracking.</li>
                         </ul>
                     </div>
 
                     <div class="project-card">
                         <h3>SequeMusic</h3>
-                        <span class="project-tag">Data Structures & Systems Engineering</span>
-                        <p>Designed and implemented an optimized media management application centered around sequential data processing and advanced data structures.</p>
+                        <span class="project-tag">C# | Data Structures & Systems</span>
+                        <p>Optimized media management application centered around sequential data processing and advanced data structures.</p>
                         <ul>
                             <li>Advanced data structures (linked lists, custom queues).</li>
                             <li>Robust file I/O algorithms for metadata parsing.</li>
-                            <li>Modular architecture for clean separation of logic.</li>
                         </ul>
                     </div>
+
+                    <div class="project-card">
+                        <h3>LACC_v2</h3>
+                        <span class="project-tag">Dart | Application Development</span>
+                        <p>Application development project utilizing modern cross-platform concepts and clean architectural practices.</p>
+                        <ul>
+                            <li>Modular code structure and component design.</li>
+                            <li>Clean user logic implementation.</li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </section>
