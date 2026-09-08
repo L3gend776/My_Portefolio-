@@ -136,7 +136,7 @@
             position: relative;
         }
 
-        /* Texto Gigante de Fundo com Cor e Interação do Rato */
+        /* Texto Gigante de Fundo com MUITA MAIS COR e brilho */
         .bg-text-massive {
             position: absolute;
             top: 50%;
@@ -145,14 +145,15 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: 16vw;
             font-weight: 900;
-            /* Degradê com mais cor (verde/ciano e roxo subtil) */
-            background: linear-gradient(135deg, rgba(0, 210, 138, 0.07), rgba(106, 90, 205, 0.07));
+            /* Degradê mais intenso e visível com tons de verde e roxo vibrantes */
+            background: linear-gradient(135deg, rgba(0, 210, 138, 0.22), rgba(106, 90, 205, 0.22));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 50px rgba(0, 210, 138, 0.1);
             z-index: 1;
             pointer-events: none;
             white-space: nowrap;
-            transition: transform 0.1s ease-out; /* Transição suave para o movimento do rato */
+            transition: transform 0.1s ease-out;
         }
 
         /* Fotografia perfeitamente integrada */
@@ -635,8 +636,8 @@
     <!-- Script para o movimento do texto com o rato (Parallax) -->
     <script>
         document.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth - 0.5) * 40; // Intensidade do movimento horizontal
-            const y = (e.clientY / window.innerHeight - 0.5) * 40; // Intensidade do movimento vertical
+            const x = (e.clientX / window.innerWidth - 0.5) * 40;
+            const y = (e.clientY / window.innerHeight - 0.5) * 40;
             const parallaxText = document.getElementById('parallax-text');
             if (parallaxText) {
                 parallaxText.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
