@@ -43,7 +43,7 @@
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            background: rgba(3, 3, 3, 0.7);
+            background: rgba(3, 3, 3, 0.6);
             backdrop-filter: blur(10px);
         }
 
@@ -136,24 +136,7 @@
             position: relative;
         }
 
-        /* Foto ajustada nas proporções normais de retrato, perfeitamente encaixada como na referência */
-        .hero-center-img {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            height: 75vh; /* Altura natural estilo retrato */
-            width: auto;
-            max-width: 40vw;
-            object-fit: cover;
-            object-position: top center;
-            z-index: 1;
-            pointer-events: none;
-            /* Transição suave nas bordas inferiores para se fundir sem cortes secos */
-            -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 95%);
-            mask-image: linear-gradient(to bottom, black 65%, transparent 95%);
-        }
-
+        /* Texto Gigante de Fundo */
         .bg-text-massive {
             position: absolute;
             top: 50%;
@@ -162,10 +145,29 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: 16vw;
             font-weight: 900;
-            color: rgba(255, 255, 255, 0.02);
-            z-index: 0;
+            color: rgba(255, 255, 255, 0.025);
+            z-index: 1;
             pointer-events: none;
             white-space: nowrap;
+        }
+
+        /* A tua foto integrada perfeitamente ao centro, com proporção e iluminação natural de fundo */
+        .hero-center-img {
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 92vh;
+            width: auto;
+            max-width: 55vw;
+            object-fit: cover;
+            object-position: top center;
+            z-index: 2;
+            pointer-events: none;
+            /* Mistura subtil e orgânica com o fundo sem parecer um recorte rígido */
+            mask-image: radial-gradient(circle at 50% 35%, black 50%, rgba(0,0,0,0.6) 80%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle at 50% 35%, black 50%, rgba(0,0,0,0.6) 80%, transparent 100%);
+            opacity: 0.95;
         }
 
         .hero-left {
@@ -189,7 +191,7 @@
             line-height: 1;
             margin-top: 0.2rem;
             display: block;
-            text-shadow: 0 0 20px rgba(0, 210, 138, 0.2);
+            text-shadow: 0 0 25px rgba(0, 210, 138, 0.25);
         }
 
         .hero-left .last-name {
@@ -217,7 +219,7 @@
 
         .btn-outline {
             border: 1px solid var(--border);
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(5px);
             padding: 0.8rem 1.8rem;
             border-radius: 30px;
@@ -479,7 +481,7 @@
             #home { flex-direction: column; padding: 6rem 2rem 2rem; justify-content: flex-start; text-align: center; }
             .hero-left, .hero-right { width: 100%; text-align: center; margin: 0; }
             .hero-right { margin-top: 1rem; }
-            .hero-center-img { height: 45vh; bottom: 5%; }
+            .hero-center-img { height: 50vh; bottom: 0; }
             .about-grid, .projects-grid, .contact-box { grid-template-columns: 1fr; gap: 2rem; }
         }
     </style>
@@ -503,9 +505,10 @@
 
         <!-- ECRÃ 1: HOME -->
         <section class="screen" id="home">
-            <img src="Portefolio.jpeg" alt="Guilherme Aires" class="hero-center-img">
-
             <div class="bg-text-massive">PORTFOLIO</div>
+
+            <!-- Imagem com fusão e proporção natural de retrato -->
+            <img src="Portefolio.jpeg" alt="Guilherme Aires" class="hero-center-img">
 
             <div class="hero-left">
                 <h1>Hi I'm</h1>
