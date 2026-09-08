@@ -136,7 +136,7 @@
             position: relative;
         }
 
-        /* Texto Gigante de Fundo */
+        /* Texto Gigante de Fundo com Cor e Interação do Rato */
         .bg-text-massive {
             position: absolute;
             top: 50%;
@@ -145,13 +145,17 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: 16vw;
             font-weight: 900;
-            color: rgba(255, 255, 255, 0.025);
+            /* Degradê com mais cor (verde/ciano e roxo subtil) */
+            background: linear-gradient(135deg, rgba(0, 210, 138, 0.07), rgba(106, 90, 205, 0.07));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             z-index: 1;
             pointer-events: none;
             white-space: nowrap;
+            transition: transform 0.1s ease-out; /* Transição suave para o movimento do rato */
         }
 
-        /* Fotografia ajustada mais para cima e perfeitamente centrada */
+        /* Fotografia perfeitamente integrada */
         .hero-center-img {
             position: absolute;
             bottom: 3rem;
@@ -504,7 +508,7 @@
 
         <!-- ECRÃ 1: HOME -->
         <section class="screen" id="home">
-            <div class="bg-text-massive">PORTFOLIO</div>
+            <div class="bg-text-massive" id="parallax-text">PORTFOLIO</div>
 
             <img src="Portefolio.jpeg" alt="Guilherme Aires" class="hero-center-img">
 
@@ -512,8 +516,7 @@
                 <h1>Hi I'm</h1>
                 <span class="first-name">Guilherme</span>
                 <span class="last-name">Aires</span>
-                <!-- Descrição atualizada diretamente do teu currículo -->
-                <p>B.Sc. Graduate in Computer Engineering with a strong focus and interest in Networking, IT Infrastructure, and Cybersecurity. Proven ability to work effectively in team environments, possessing excellent communication skills and a high capacity for adapting to new technological challenges.</p>
+                <p>B.Sc. Graduate in Computer Engineering with a strong focus and interest in Networking, IT Infrastructure, and Cybersecurity. Proven ability to work effectively in team environments, possessing excellent communication skills and a high capacity for adapting to new technological challenges[cite: 1, 2].</p>
                 
                 <div class="hero-buttons">
                     <a href="#contact" class="btn-outline"><i class="fas fa-envelope"></i> Get in Touch</a>
@@ -628,6 +631,18 @@
         </section>
 
     </div>
+
+    <!-- Script para o movimento do texto com o rato (Parallax) -->
+    <script>
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 40; // Intensidade do movimento horizontal
+            const y = (e.clientY / window.innerHeight - 0.5) * 40; // Intensidade do movimento vertical
+            const parallaxText = document.getElementById('parallax-text');
+            if (parallaxText) {
+                parallaxText.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+            }
+        });
+    </script>
 
 </body>
 </html>
