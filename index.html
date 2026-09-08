@@ -129,7 +129,7 @@
             background-color: var(--bg-surface);
         }
 
-        /* --- ECRÃ 1: HERO SECTION --- */
+        /* --- ECRÃ 1: HERO SECTION (COM A NOVA FOTO portefolio3.png) --- */
         #home {
             justify-content: space-between;
             padding: 0 6rem;
@@ -157,18 +157,18 @@
 
         .hero-center-img {
             position: absolute;
-            bottom: 3rem;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            height: 82vh;
+            height: 85vh;
             width: auto;
-            max-width: 50vw;
+            max-width: 55vw;
             object-fit: cover;
             object-position: top center;
             z-index: 2;
             pointer-events: none;
-            -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 45%, rgba(0,0,0,0.6) 75%, transparent 92%);
-            mask-image: radial-gradient(ellipse at 50% 30%, black 45%, rgba(0,0,0,0.6) 75%, transparent 92%);
+            -webkit-mask-image: radial-gradient(ellipse at 50% 40%, black 50%, rgba(0,0,0,0.5) 75%, transparent 92%);
+            mask-image: radial-gradient(ellipse at 50% 40%, black 50%, rgba(0,0,0,0.5) 75%, transparent 92%);
             opacity: 0.95;
         }
 
@@ -304,7 +304,7 @@
             animation: scrollWheel 2s infinite;
         }
 
-        /* --- ECRÃ 2: ABOUT ME --- */
+        /* --- ECRÃ 2: ABOUT ME (Mantém a foto anterior Portefolio.jpeg) --- */
         #about {
             padding: 3rem 5rem;
             justify-content: center;
@@ -513,7 +513,7 @@
             background: var(--accent-green);
         }
 
-        /* --- ECRÃ 3: FEATURED PROJECTS (ESTILO GALERIA INTERATIVA / ACCORDION) --- */
+        /* --- ECRÃ 3: FEATURED PROJECTS (GALERIA INTERATIVA) --- */
         #projects {
             padding: 4rem 6rem;
             flex-direction: column;
@@ -544,7 +544,6 @@
             margin: 0 auto;
         }
 
-        /* Cartão Ativo (Esquerda - Expande com detalhes) */
         .project-active-panel {
             flex: 1.6;
             background: var(--card-bg);
@@ -634,7 +633,6 @@
             color: var(--accent-green);
         }
 
-        /* Seletor de Projetos à Direita (Colunas verticais interativas) */
         .projects-selector-list {
             flex: 1.2;
             display: flex;
@@ -791,11 +789,11 @@
     <!-- CONTAINER DE SCROLL INFINITO -->
     <div class="scroll-container">
 
-        <!-- ECRÃ 1: HOME -->
+        <!-- ECRÃ 1: HOME (COM A NOVA FOTO portefolio3.png) -->
         <section class="screen" id="home">
             <div class="bg-text-massive" id="parallax-text">PORTFOLIO</div>
 
-            <img src="Portefolio.jpeg" alt="Guilherme Aires" class="hero-center-img">
+            <img src="portefolio3.png" alt="Guilherme Aires" class="hero-center-img">
 
             <div class="hero-left">
                 <h1>Hi I'm</h1>
