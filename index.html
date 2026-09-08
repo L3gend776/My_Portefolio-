@@ -304,18 +304,18 @@
             animation: scrollWheel 2s infinite;
         }
 
-        /* --- ECRÃ 2: ABOUT ME (PROPORÇÕES EXATAS DA REFERÊNCIA) --- */
+        /* --- ECRÃ 2: ABOUT ME (FOTO MAIS PEQUENA E INFORMAÇÃO EM DESTAQUE) --- */
         #about {
             padding: 3rem 5rem;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            gap: 4rem;
+            gap: 5rem;
         }
 
         .about-image-wrapper {
             position: relative;
-            height: 90vh;
-            width: 40vw;
+            height: 72vh;
+            width: 28vw; /* Foto mais compacta à esquerda */
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -324,10 +324,10 @@
         .about-image-wrapper::before {
             content: '';
             position: absolute;
-            width: 320px;
-            height: 320px;
+            width: 220px;
+            height: 220px;
             background: radial-gradient(circle, rgba(0, 210, 138, 0.12) 0%, transparent 70%);
-            top: 45%;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 0;
@@ -335,7 +335,7 @@
         }
 
         .about-left-img {
-            height: 88vh;
+            height: 68vh; /* Altura reduzida para destacar a informação */
             width: auto;
             max-width: 100%;
             object-fit: cover;
@@ -347,10 +347,10 @@
 
         .about-right-content {
             flex: 1;
-            max-width: 600px;
+            max-width: 700px; /* Mais largura dedicada aos blocos de informação */
             display: flex;
             flex-direction: column;
-            gap: 0.9rem;
+            gap: 0.85rem;
         }
 
         .about-header-row {
@@ -404,7 +404,7 @@
             background-color: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 8px;
-            padding: 0.8rem;
+            padding: 0.75rem;
             transition: 0.3s ease;
         }
         .about-card:hover {
@@ -414,20 +414,20 @@
 
         .about-card i {
             color: var(--accent-green);
-            font-size: 0.95rem;
-            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
             display: block;
         }
 
         .about-card h4 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             margin-bottom: 0.15rem;
             color: var(--text-main);
         }
 
         .about-card p {
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             color: var(--text-muted);
             line-height: 1.25;
         }
@@ -443,7 +443,7 @@
             background-color: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 6px;
-            padding: 0.5rem 0.4rem;
+            padding: 0.45rem 0.4rem;
             text-align: center;
             transition: 0.3s ease;
         }
@@ -453,12 +453,12 @@
 
         .stat-box h3 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--accent-green);
             margin-bottom: 0.05rem;
         }
         .stat-box p {
-            font-size: 0.6rem;
+            font-size: 0.58rem;
             color: var(--text-muted);
             letter-spacing: 0.8px;
             text-transform: uppercase;
@@ -473,7 +473,7 @@
             color: var(--accent-green);
             letter-spacing: 1.2px;
             text-transform: uppercase;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.35rem;
             display: flex;
             align-items: center;
             gap: 0.4rem;
@@ -488,7 +488,7 @@
         .lang-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
-            padding: 0.45rem 0.7rem;
+            padding: 0.4rem 0.6rem;
             border-radius: 6px;
         }
 
@@ -499,7 +499,7 @@
         }
 
         .lang-card span {
-            font-size: 0.65rem;
+            font-size: 0.62rem;
             color: var(--text-muted);
         }
 
@@ -507,7 +507,7 @@
             width: 100%;
             height: 2px;
             background: var(--border);
-            margin-top: 0.25rem;
+            margin-top: 0.2rem;
             border-radius: 2px;
             overflow: hidden;
         }
