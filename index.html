@@ -18,7 +18,7 @@
             --text-main: #ffffff;
             --text-muted: #9ca3af;
             --border: #222222;
-            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-bg: rgba(255, 255, 255, 0.025);
         }
 
         * {
@@ -304,18 +304,18 @@
             animation: scrollWheel 2s infinite;
         }
 
-        /* --- ECRÃ 2: ABOUT ME (FOTO MAIS PEQUENA E INFORMAÇÃO EM DESTAQUE) --- */
+        /* --- ECRÃ 2: ABOUT ME (FOTO COMPACTA + INFORMAÇÃO MAIOR E MAIS PREENCHIDA) --- */
         #about {
             padding: 3rem 5rem;
             justify-content: center;
             align-items: center;
-            gap: 5rem;
+            gap: 4.5rem;
         }
 
         .about-image-wrapper {
             position: relative;
-            height: 72vh;
-            width: 28vw; /* Foto mais compacta à esquerda */
+            height: 70vh;
+            width: 25vw; /* Foto equilibrada e menor */
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -324,9 +324,9 @@
         .about-image-wrapper::before {
             content: '';
             position: absolute;
-            width: 220px;
-            height: 220px;
-            background: radial-gradient(circle, rgba(0, 210, 138, 0.12) 0%, transparent 70%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(0, 210, 138, 0.15) 0%, transparent 70%);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -335,7 +335,7 @@
         }
 
         .about-left-img {
-            height: 68vh; /* Altura reduzida para destacar a informação */
+            height: 65vh;
             width: auto;
             max-width: 100%;
             object-fit: cover;
@@ -347,10 +347,10 @@
 
         .about-right-content {
             flex: 1;
-            max-width: 700px; /* Mais largura dedicada aos blocos de informação */
+            max-width: 780px; /* Mais largura para preencher o ecrã com a informação maior */
             display: flex;
             flex-direction: column;
-            gap: 0.85rem;
+            gap: 1.1rem;
         }
 
         .about-header-row {
@@ -361,7 +361,7 @@
 
         .about-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.8rem;
+            font-size: 3.2rem;
             font-weight: 900;
             line-height: 0.95;
         }
@@ -370,7 +370,7 @@
         }
 
         .problem-solver-label {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
             letter-spacing: 1px;
             position: relative;
@@ -388,23 +388,23 @@
 
         .about-bio {
             color: var(--text-muted);
-            font-size: 0.84rem;
-            line-height: 1.45;
+            font-size: 0.95rem; /* Texto maior e mais legível */
+            line-height: 1.55;
             font-family: monospace;
         }
 
-        /* 4 Cartões de Especialidade / Stack */
+        /* 4 Cartões de Especialidade mais preenchidos e maiores */
         .about-cards-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 0.6rem;
+            gap: 0.85rem;
         }
 
         .about-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 0.75rem;
+            border-radius: 10px;
+            padding: 1rem 1.1rem;
             transition: 0.3s ease;
         }
         .about-card:hover {
@@ -414,36 +414,36 @@
 
         .about-card i {
             color: var(--accent-green);
-            font-size: 0.9rem;
-            margin-bottom: 0.25rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.35rem;
             display: block;
         }
 
         .about-card h4 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.78rem;
-            margin-bottom: 0.15rem;
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
             color: var(--text-main);
         }
 
         .about-card p {
-            font-size: 0.7rem;
+            font-size: 0.78rem;
             color: var(--text-muted);
-            line-height: 1.25;
+            line-height: 1.35;
         }
 
-        /* Estatísticas em Caixas Proporcionais */
+        /* Estatísticas em Caixas Maiores e Preenchidas */
         .about-stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 0.5rem;
+            gap: 0.7rem;
         }
 
         .stat-box {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 0.45rem 0.4rem;
+            border-radius: 8px;
+            padding: 0.65rem 0.5rem;
             text-align: center;
             transition: 0.3s ease;
         }
@@ -453,12 +453,12 @@
 
         .stat-box h3 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.95rem;
+            font-size: 1.15rem;
             color: var(--accent-green);
             margin-bottom: 0.05rem;
         }
         .stat-box p {
-            font-size: 0.58rem;
+            font-size: 0.65rem;
             color: var(--text-muted);
             letter-spacing: 0.8px;
             text-transform: uppercase;
@@ -469,11 +469,11 @@
             padding-top: 0.1rem;
         }
         .languages-title {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: var(--accent-green);
             letter-spacing: 1.2px;
             text-transform: uppercase;
-            margin-bottom: 0.35rem;
+            margin-bottom: 0.4rem;
             display: flex;
             align-items: center;
             gap: 0.4rem;
@@ -482,32 +482,32 @@
         .lang-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 0.6rem;
+            gap: 0.7rem;
         }
 
         .lang-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
-            padding: 0.4rem 0.6rem;
-            border-radius: 6px;
+            padding: 0.55rem 0.8rem;
+            border-radius: 8px;
         }
 
         .lang-card h5 {
-            font-size: 0.75rem;
+            font-size: 0.82rem;
             color: var(--text-main);
             margin-bottom: 0.05rem;
         }
 
         .lang-card span {
-            font-size: 0.62rem;
+            font-size: 0.7rem;
             color: var(--text-muted);
         }
 
         .lang-bar {
             width: 100%;
-            height: 2px;
+            height: 2.5px;
             background: var(--border);
-            margin-top: 0.2rem;
+            margin-top: 0.3rem;
             border-radius: 2px;
             overflow: hidden;
         }
