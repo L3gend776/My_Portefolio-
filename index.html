@@ -513,7 +513,7 @@
             background: var(--accent-green);
         }
 
-        /* --- ECRÃ 3: FEATURED PROJECTS (CARDS INDIVIDUAIS INTERATIVOS) --- */
+        /* --- ECRÃ 3: FEATURED PROJECTS --- */
         #projects {
             padding: 4rem 6rem;
             flex-direction: column;
@@ -661,47 +661,171 @@
             transform: translateX(3px);
         }
 
-        /* --- ECRÃ 4: CONTACT --- */
-        .contact-box {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+        /* --- ECRÃ 4: CONTACT (ESTILO REFERÊNCIA AARYAN) --- */
+        #contact {
+            padding: 4rem 6rem;
+            justify-content: center;
             align-items: center;
         }
 
-        .contact-info-list {
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 1.2fr;
+            gap: 4rem;
+            width: 100%;
+            max-width: 1200px;
+            align-items: center;
+        }
+
+        .contact-left-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .contact-subtitle {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-left-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .contact-card-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            transition: 0.3s ease;
+        }
+
+        .contact-card-box:hover {
+            border-color: rgba(0, 210, 138, 0.5);
+        }
+
+        .contact-card-box i {
+            font-size: 1.3rem;
+            color: var(--accent-green);
+        }
+
+        .contact-card-box span {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            display: block;
+            margin-bottom: 0.1rem;
+        }
+
+        .contact-card-box strong {
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .social-icons-row {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .social-icon-btn {
+            width: 45px;
+            height: 45px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon-btn:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+            background: rgba(0, 210, 138, 0.08);
+            transform: translateY(-3px);
+        }
+
+        /* Caixa do Formulário à Direita */
+        .contact-form-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
         }
 
-        .contact-item {
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group input, .form-group textarea {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--accent-green);
+            box-shadow: 0 0 15px rgba(0, 210, 138, 0.15);
+        }
+
+        .form-group textarea {
+            resize: none;
+            height: 130px;
+        }
+
+        .btn-send-message {
+            background: linear-gradient(135deg, var(--accent-green), #00b072);
+            color: #030303;
+            border: none;
+            padding: 1rem;
+            border-radius: 12px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.95srem;
+            cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 1rem;
-            background: rgba(255, 255, 255, 0.02);
-            padding: 1.2rem 1.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            text-decoration: none;
-            color: var(--text-main);
-            transition: 0.3s;
+            justify-content: center;
+            gap: 0.6rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 25px rgba(0, 210, 138, 0.25);
         }
 
-        .contact-item:hover {
-            border-color: var(--accent-green);
-            transform: translateX(5px);
-        }
-
-        .contact-item i {
-            font-size: 1.5rem;
-            color: var(--accent-green);
-        }
-
-        .contact-item span {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            display: block;
+        .btn-send-message:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 0 35px rgba(0, 210, 138, 0.4);
         }
 
         @keyframes scrollWheel {
@@ -712,14 +836,15 @@
         @media (max-width: 1024px) {
             .navbar { padding: 1.5rem 2rem; }
             .nav-links { display: none; }
-            #home, #about { flex-direction: column; padding: 6rem 2rem 2rem; justify-content: flex-start; text-align: center; height: auto; }
+            #home, #about, #contact { flex-direction: column; padding: 6rem 2rem 2rem; justify-content: flex-start; text-align: center; height: auto; }
             .hero-left, .hero-right, .about-right-content { width: 100%; text-align: center; margin: 0; }
             .hero-right { margin-top: 1rem; }
             .hero-center-img, .about-image-wrapper { height: 45vh; width: 80vw; }
-            .about-cards-grid, .lang-grid, .projects-grid, .contact-box { grid-template-columns: 1fr; }
+            .about-cards-grid, .lang-grid, .projects-grid, .contact-layout { grid-template-columns: 1fr; }
             .about-header-row { flex-direction: column; align-items: center; gap: 0.5rem; }
             #projects { padding: 6rem 2rem; height: auto; align-items: flex-start; }
             .projects-grid { max-height: none; overflow-y: visible; }
+            .form-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -856,7 +981,7 @@
             </div>
         </section>
 
-        <!-- ECRÃ 3: FEATURED PROJECTS (CARDS INDIVIDUAIS INTERATIVOS) -->
+        <!-- ECRÃ 3: FEATURED PROJECTS -->
         <section class="screen" id="projects">
             <div class="content-container">
                 <div class="projects-header">
@@ -934,41 +1059,63 @@
             </div>
         </section>
 
-        <!-- ECRÃ 4: CONTACT -->
+        <!-- ECRÃ 4: CONTACT (ESTILO REFERÊNCIA COM FORMULÁRIO) -->
         <section class="screen" id="contact">
             <div class="content-container">
-                <h2 class="section-title">Let's <span>Connect</span></h2>
-                <div class="contact-box">
-                    <div>
-                        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem; font-size: 1.1rem;">
-                            I am currently open to new opportunities in Computer Engineering, Network Administration, and Cybersecurity. Feel free to reach out via email or connect through my professional profiles.
-                        </p>
-                        <div style="font-family: 'Space Grotesk'; font-size: 1.2rem; color: var(--accent-green);">
-                            Entroncamento, Portugal
+                <div style="margin-bottom: 2rem;">
+                    <span class="creative-works-tag">// LET'S COLLABORATE</span>
+                    <h2 class="section-title" style="margin-bottom: 0;">Get In <span>Touch</span></h2>
+                </div>
+
+                <div class="contact-layout">
+                    <!-- Lado Esquerdo: Info e Redes -->
+                    <div class="contact-left-info">
+                        <div>
+                            <h3 class="contact-subtitle">Let's start a conversation</h3>
+                            <p>I am currently open to new opportunities in Computer Engineering, Network Administration, and Cybersecurity. Feel free to reach out via email, location, or social profiles.</p>
                         </div>
-                    </div>
-                    <div class="contact-info-list">
-                        <a href="mailto:guilhermeaires2003@gmail.com" class="contact-item">
+
+                        <div class="contact-card-box">
                             <i class="fas fa-envelope"></i>
                             <div>
-                                <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">Email Me</span>
+                                <span>Email Me</span>
                                 <strong>guilhermeaires2003@gmail.com</strong>
                             </div>
-                        </a>
-                        <a href="https://www.linkedin.com/in/guilherme-aires10" target="_blank" class="contact-item">
-                            <i class="fab fa-linkedin"></i>
+                        </div>
+
+                        <div class="contact-card-box">
+                            <i class="fas fa-map-marker-alt"></i>
                             <div>
-                                <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">LinkedIn Profile</span>
-                                <strong>guilherme-aires10</strong>
+                                <span>Location</span>
+                                <strong>Entroncamento, Portugal</strong>
                             </div>
-                        </a>
-                        <a href="https://github.com/L3gend776" target="_blank" class="contact-item">
-                            <i class="fab fa-github"></i>
-                            <div>
-                                <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">GitHub Repository</span>
-                                <strong>L3gend776</strong>
+                        </div>
+
+                        <div class="social-icons-row">
+                            <a href="https://github.com/L3gend776" target="_blank" class="social-icon-btn"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/guilherme-aires10" target="_blank" class="social-icon-btn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="mailto:guilhermeaires2003@gmail.com" class="social-icon-btn"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Lado Direito: Formulário de Contacto -->
+                    <div class="contact-form-card">
+                        <form action="https://formsubmit.co/guilhermeaires2003@gmail.com" method="POST">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" name="name" placeholder="Your Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="email" placeholder="Your Email" required>
+                                </div>
                             </div>
-                        </a>
+                            <div class="form-group" style="margin-top: 1.2rem;">
+                                <textarea name="message" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-send-message" style="margin-top: 1.2rem; width: 100%;">
+                                Send Message <i class="fas fa-paper-plane" style="font-size: 0.85rem;"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
