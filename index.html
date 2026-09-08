@@ -136,21 +136,22 @@
             position: relative;
         }
 
-        /* A tua foto posicionada exatamente ao centro, com escala correta estilo Aaryan */
+        /* Foto ajustada nas proporções normais de retrato, perfeitamente encaixada como na referência */
         .hero-center-img {
             position: absolute;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            height: 85vh; /* Altura ideal para mostrar o rosto e os ombros */
+            height: 75vh; /* Altura natural estilo retrato */
             width: auto;
-            object-fit: contain;
+            max-width: 40vw;
+            object-fit: cover;
             object-position: top center;
             z-index: 1;
             pointer-events: none;
-            /* Suaviza a base para fundir com o fundo preto */
-            -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+            /* Transição suave nas bordas inferiores para se fundir sem cortes secos */
+            -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 95%);
+            mask-image: linear-gradient(to bottom, black 65%, transparent 95%);
         }
 
         .bg-text-massive {
@@ -478,7 +479,7 @@
             #home { flex-direction: column; padding: 6rem 2rem 2rem; justify-content: flex-start; text-align: center; }
             .hero-left, .hero-right { width: 100%; text-align: center; margin: 0; }
             .hero-right { margin-top: 1rem; }
-            .hero-center-img { height: 50vh; bottom: 5%; }
+            .hero-center-img { height: 45vh; bottom: 5%; }
             .about-grid, .projects-grid, .contact-box { grid-template-columns: 1fr; gap: 2rem; }
         }
     </style>
@@ -502,7 +503,6 @@
 
         <!-- ECRÃ 1: HOME -->
         <section class="screen" id="home">
-            <!-- A tua foto posicionada exatamente ao centro, como na referência -->
             <img src="Portefolio.jpeg" alt="Guilherme Aires" class="hero-center-img">
 
             <div class="bg-text-massive">PORTFOLIO</div>
