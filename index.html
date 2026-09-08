@@ -7,16 +7,16 @@
     <!-- FontAwesome para Ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-color: #0d1117;
-            --surface-color: #161b22;
-            --primary-color: #58a6ff;
-            --text-main: #c9d1d9;
-            --text-muted: #8b949e;
-            --border-color: #30363d;
+            --bg-base: #050505;
+            --bg-surface: #111111;
+            --accent: #00e5ff; /* Ciano tecnológico */
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border: #222222;
         }
 
         * {
@@ -25,394 +25,540 @@
             box-sizing: border-box;
         }
 
-        body {
+        body, html {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
+            background-color: var(--bg-base);
             color: var(--text-main);
-            line-height: 1.6;
+            /* Ocultar barra de scroll no ecrã principal para focar no wrapper */
+            overflow: hidden; 
+            height: 100vh;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
+        /* --- SISTEMA DE TELA INFINITA (SCROLL SNAPPING) --- */
+        .scroll-container {
+            height: 100vh;
+            overflow-y: auto;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+            /* Esconder barra de scroll mas permitir scroll */
+            scrollbar-width: none; 
+            -ms-overflow-style: none;
+        }
+        .scroll-container::-webkit-scrollbar {
+            display: none;
         }
 
-        /* --- HEADER & HERO --- */
-        header {
+        /* Cada secção atua como um ecrã completo */
+        .screen {
+            min-height: 100vh;
+            width: 100%;
+            scroll-snap-align: start; /* Faz o snap no início da secção */
             display: flex;
             align-items: center;
-            gap: 2.5rem;
-            padding: 3rem 0;
-            border-bottom: 1px solid var(--border-color);
-            animation: fadeIn 1s ease-out;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Cores alternadas subtis de fundo para distinguir secções */
+        .screen:nth-child(even) {
+            background-color: var(--bg-surface);
+        }
+
+        /* Limitador de largura para o conteúdo não esticar demasiado */
+        .content-wrapper {
+            max-width: 1000px;
+            width: 100%;
+            z-index: 2;
+            animation: fadeUp 1s ease-out;
+        }
+
+        /* --- NAVEGAÇÃO FLUTUANTE --- */
+        .nav-dots {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            z-index: 100;
+        }
+
+        .nav-dots a {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--border);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-dots a:hover {
+            background-color: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+            transform: scale(1.2);
+        }
+
+        /* --- TIPOGRAFIA GLOBAL --- */
+        h1, h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+        
+        .section-title span {
+            color: var(--accent);
+        }
+
+        /* --- SCREEN 1: HERO (HOME) --- */
+        .hero-layout {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .profile-img-container {
+            position: relative;
+        }
+
+        .profile-img-container::before {
+            content: '';
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent), transparent);
+            z-index: -1;
+            animation: pulse 3s infinite;
         }
 
         .profile-img {
-            width: 180px;
-            height: 180px;
+            width: 250px;
+            height: 250px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--primary-color);
-            box-shadow: 0 0 20px rgba(88, 166, 255, 0.2);
+            border: 4px solid var(--bg-base);
+            z-index: 1;
         }
 
-        .hero-info h1 {
-            font-size: 2.8rem;
-            color: #ffffff;
-            margin-bottom: 0.2rem;
+        .hero-text {
+            max-width: 500px;
         }
 
-        .hero-info h2 {
-            font-size: 1.3rem;
-            color: var(--primary-color);
-            font-weight: 500;
-            margin-bottom: 1rem;
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
         }
 
-        .hero-info p {
+        .hero-text h2 {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .hero-text p {
             color: var(--text-muted);
-            margin-bottom: 1.2rem;
-            max-width: 600px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
         }
 
         .social-links {
             display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
+            gap: 1.5rem;
         }
 
         .social-links a {
             color: var(--text-main);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.95rem;
-            transition: color 0.2s ease;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
         }
 
         .social-links a:hover {
-            color: var(--primary-color);
+            color: var(--accent);
+            transform: translateY(-3px);
         }
 
-        /* --- SECÇÕES --- */
-        section {
-            padding: 2.5rem 0;
-            border-bottom: 1px solid var(--border-color);
+        /* --- SCREEN 2: SKILLS & BIO --- */
+        .skills-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
         }
 
-        section:last-child {
-            border-bottom: none;
+        .bio-box {
+            background: var(--bg-base);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
         }
 
-        h3.section-title {
+        .bio-box p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-tag {
+            background-color: transparent;
+            border: 1px solid var(--border);
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent);
+            background-color: rgba(0, 229, 255, 0.05);
+            transform: translateY(-2px);
+        }
+
+        /* --- SCREEN 3: TIMELINE (EXPERIENCE & EDUCATION) --- */
+        .timeline-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .timeline-col h3 {
             font-size: 1.5rem;
-            color: #ffffff;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        h3.section-title i {
-            color: var(--primary-color);
-        }
-
-        /* --- SKILLS GRID --- */
-        .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-        }
-
-        .skill-badge {
-            background-color: var(--surface-color);
-            border: 1px solid var(--border-color);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            color: var(--text-main);
-            transition: border-color 0.2s;
-        }
-
-        .skill-badge:hover {
-            border-color: var(--primary-color);
-        }
-
-        /* --- TIMELINE (Experiência e Educação) --- */
         .timeline {
-            position: relative;
-            padding-left: 1.5rem;
-            border-left: 2px solid var(--border-color);
+            border-left: 2px solid var(--border);
+            padding-left: 2rem;
         }
 
         .timeline-item {
-            margin-bottom: 2rem;
             position: relative;
-        }
-
-        .timeline-item:last-child {
-            margin-bottom: 0;
+            margin-bottom: 2.5rem;
         }
 
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -1.85rem;
-            top: 0.2rem;
-            width: 12px;
-            height: 12px;
-            background-color: var(--primary-color);
+            left: -2.45rem;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background-color: var(--bg-base);
+            border: 2px solid var(--accent);
             border-radius: 50%;
-            border: 3px solid var(--bg-color);
         }
 
-        .timeline-date {
+        .date {
+            color: var(--accent);
             font-size: 0.85rem;
-            color: var(--primary-color);
             font-weight: 600;
-            margin-bottom: 0.3rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
             display: block;
         }
 
-        .timeline-title {
-            font-size: 1.15rem;
-            color: #ffffff;
-            font-weight: 600;
-        }
-
-        .timeline-subtitle {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin-bottom: 0.8rem;
-        }
-
-        .timeline-content {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .timeline-content ul {
-            padding-left: 1.2rem;
-            margin-top: 0.5rem;
-        }
-
-        .timeline-content li {
+        .timeline-item h4 {
+            font-size: 1.2rem;
             margin-bottom: 0.3rem;
         }
 
-        /* --- PROJETOS --- */
+        .timeline-item h5 {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item p, .timeline-item li {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .timeline-item ul {
+            padding-left: 1rem;
+        }
+
+        /* --- SCREEN 4: PROJECTS --- */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
         .project-card {
-            background-color: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: transform 0.2s ease, border-color 0.2s ease;
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-color);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-color: #333;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
         }
 
         .project-card h4 {
-            color: #ffffff;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             margin-bottom: 0.5rem;
         }
 
-        .project-tags {
+        .tech-stack {
             font-size: 0.8rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-weight: 500;
+            color: var(--accent);
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 1.5rem;
+            display: block;
         }
 
         .project-card p {
-            font-size: 0.9rem;
             color: var(--text-muted);
-            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
         }
 
         .project-card ul {
-            padding-left: 1.2rem;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-        
-        /* --- FOOTER --- */
-        footer {
-            text-align: center;
-            padding: 2rem 0;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border-color);
-            margin-top: 2rem;
+            list-style: none;
         }
 
-        /* --- ANIMAÇÕES & RESPONSIVIDADE --- */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+        .project-card ul li {
+            position: relative;
+            padding-left: 1.2rem;
+            font-size: 0.85rem;
+            color: #ccc;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-card ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Indicador de scroll animado (Apenas no ecrã 1) */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+            pointer-events: none;
+        }
+
+        /* --- ANIMAÇÕES --- */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                text-align: center;
-                gap: 1.5rem;
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.05); opacity: 0.2; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-15px) translateX(-50%); }
+            60% { transform: translateY(-7px) translateX(-50%); }
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 900px) {
+            .skills-container, .timeline-wrapper {
+                grid-template-columns: 1fr;
             }
-            .hero-info p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .social-links {
-                justify-content: center;
-            }
+            .nav-dots { display: none; } /* Esconder navegação flutuante em mobile */
+            .hero-layout { flex-direction: column; text-align: center; padding-top: 2rem;}
+            .social-links { justify-content: center; }
+            .screen { padding: 4rem 1.5rem; height: auto; min-height: 100vh; }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    
-    <!-- CABEÇALHO / HERO SECTION -->
-    <header>
-        <!-- A tua fotografia -->
-        <img src="image_1d61ce.png" alt="Guilherme Aires" class="profile-img">
-        <div class="hero-info">
-            <h1>Guilherme Aires</h1>
-            <h2>Computer Engineer</h2>
-            <p>B.Sc. Graduate in Computer Engineering with a strong focus and interest in Networking, IT Infrastructure, and Cybersecurity. Proven ability to work effectively in team environments, possessing excellent communication skills and a high capacity for adapting to new technological challenges.</p>
-            
-            <div class="social-links">
-                <a href="mailto:guilhermeaires2003@gmail.com"><i class="fas fa-envelope"></i> guilhermeaires2003@gmail.com</a>
-                <a href="#"><i class="fas fa-map-marker-alt"></i> Entroncamento, Portugal</a>
-                <a href="https://www.linkedin.com/in/guilherme-aires10" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="https://github.com/L3gend776" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-            </div>
-        </div>
-    </header>
+    <!-- Navegação Flutuante -->
+    <div class="nav-dots">
+        <a href="#home" title="Home"></a>
+        <a href="#skills" title="Skills"></a>
+        <a href="#experience" title="Experience"></a>
+        <a href="#projects" title="Projects"></a>
+    </div>
 
-    <!-- COMPETÊNCIAS -->
-    <section>
-        <h3 class="section-title"><i class="fas fa-code"></i> Skills</h3>
-        <div class="skills-grid">
-            <div class="skill-badge">Systems Administration (Linux & Windows)</div>
-            <div class="skill-badge">Network Engineering & Protocols (TCP/IP)</div>
-            <div class="skill-badge">Cybersecurity & Information Security</div>
-            <div class="skill-badge">Shell Scripting (Bash) & Python Automation</div>
-            <div class="skill-badge">Virtualization (VMware & VM Management)</div>
-            <div class="skill-badge">Hardware Troubleshooting & Maintenance</div>
-            <div class="skill-badge">Teamwork & Fast Adaptation</div>
-        </div>
-    </section>
+    <!-- Contetor Principal (Com Scroll Snap) -->
+    <div class="scroll-container">
 
-    <!-- EXPERIÊNCIA -->
-    <section>
-        <h3 class="section-title"><i class="fas fa-briefcase"></i> Work Experience</h3>
-        <div class="timeline">
-            <div class="timeline-item">
-                <span class="timeline-date">2020</span>
-                <h4 class="timeline-title">Sector Alarm Portugal</h4>
-                <div class="timeline-subtitle">Security Systems Intern</div>
-                <div class="timeline-content">
-                    <ul>
-                        <li>Developed hands-on skills in installing CCTV video surveillance cameras.</li>
-                        <li>Programmed and tested automated alarm sensors.</li>
-                    </ul>
+        <!-- ECRÃ 1: HOME -->
+        <section class="screen" id="home">
+            <div class="content-wrapper hero-layout">
+                <div class="profile-img-container">
+                    <img src="image_1d61ce.png" alt="Guilherme Aires" class="profile-img">
+                </div>
+                <div class="hero-text">
+                    <h1>Guilherme Aires</h1>
+                    <h2>COMPUTER ENGINEER</h2>
+                    <p>B.Sc. Graduate in Computer Engineering with a strong focus and interest in Networking, IT Infrastructure, and Cybersecurity. Proven ability to work effectively in team environments and adapting to new technological challenges.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/L3gend776" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/guilherme-aires10" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="mailto:guilhermeaires2003@gmail.com"><i class="fas fa-envelope"></i></a>
+                        <a href="#"><i class="fas fa-map-marker-alt"></i></a>
+                    </div>
                 </div>
             </div>
-            
-            <div class="timeline-item">
-                <span class="timeline-date">2019</span>
-                <h4 class="timeline-title">Santa Casa da Misericórdia do Entroncamento</h4>
-                <div class="timeline-subtitle">Network Engineering Intern</div>
-                <div class="timeline-content">
-                    <ul>
-                        <li>Responsible for the management and preventive maintenance of servers, switches, and routers.</li>
-                        <li>Ensured the continuous operation and stability of the local network infrastructure.</li>
-                    </ul>
+            <i class="fas fa-chevron-down scroll-indicator"></i>
+        </section>
+
+        <!-- ECRÃ 2: SKILLS -->
+        <section class="screen" id="skills">
+            <div class="content-wrapper">
+                <h2 class="section-title">My <span>Skills</span> & Profile</h2>
+                
+                <div class="skills-container">
+                    <div class="bio-box">
+                        <p>Driven by curiosity and low-level system mechanics, my academic journey provided a solid foundation in operating systems, protocols, and secure network infrastructure. Additionally, I am fluent in English (C2), native in Portuguese, and possess basic knowledge of Spanish (A2).</p>
+                    </div>
+
+                    <div class="skills-grid">
+                        <div class="skill-tag">Linux & Windows SysAdmin</div>
+                        <div class="skill-tag">TCP/IP Network Engineering</div>
+                        <div class="skill-tag">Cybersecurity</div>
+                        <div class="skill-tag">Bash & Python Automation</div>
+                        <div class="skill-tag">VMware Virtualization</div>
+                        <div class="skill-tag">Hardware Maintenance</div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- PROJETOS -->
-    <section>
-        <h3 class="section-title"><i class="fas fa-project-diagram"></i> My Projects</h3>
-        <div class="projects-grid">
-            <div class="project-card">
-                <h4>Sequechat</h4>
-                <div class="project-tags">Systems & Network Programming | Kotlin</div>
-                <p>Developed a real-time, terminal-based messaging application focused on inter-process communication (IPC) and network synchronization. Ensures sequential, reliable delivery and management of data packets between a server and multiple active clients.</p>
-                <ul>
-                    <li><strong>Networking & Sockets:</strong> Implemented client-server architecture using network programming standards to manage concurrent connections.</li>
-                    <li><strong>Concurrency & Logic:</strong> Handled race conditions and synchronized data streams.</li>
-                    <li><strong>Systems-Level Code:</strong> Developed using low-level languages taught at IPT (Kotlin), focusing on memory efficiency and OS integration.</li>
-                </ul>
+        <!-- ECRÃ 3: EXPERIENCE & EDUCATION -->
+        <section class="screen" id="experience">
+            <div class="content-wrapper timeline-wrapper">
+                
+                <!-- Educação -->
+                <div class="timeline-col">
+                    <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <span class="date">2021 - 2026</span>
+                            <h4>B.Sc. in Computer Engineering</h4>
+                            <h5>Polytechnic Institute of Tomar</h5>
+                            <p>Core focus: Network Administration, Cybersecurity, Operating Systems, and Systems Programming.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="date">2018 - 2021</span>
+                            <h4>Technical Degree in IT Equipment</h4>
+                            <h5>Tomar Professional School</h5>
+                            <p>Specialization in Computer Maintenance and Network Infrastructure Deployment.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experiência -->
+                <div class="timeline-col">
+                    <h3><i class="fas fa-briefcase"></i> Experience</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <span class="date">2020</span>
+                            <h4>Security Systems Intern</h4>
+                            <h5>Sector Alarm Portugal</h5>
+                            <ul>
+                                <li>Hands-on installation of CCTV cameras.</li>
+                                <li>Programmed and tested automated alarm sensors.</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="date">2019</span>
+                            <h4>Network Engineering Intern</h4>
+                            <h5>Santa Casa da Misericórdia</h5>
+                            <ul>
+                                <li>Preventive maintenance of servers, switches, and routers.</li>
+                                <li>Ensured the stability of local network infrastructure.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+        </section>
 
-            <div class="project-card">
-                <h4>SequeMusic</h4>
-                <div class="project-tags">Data Structures & Systems Engineering</div>
-                <p>Designed and implemented an optimized media management application centered around sequential data processing and advanced data structures. Focuses on building an efficient backend logic.</p>
-                <ul>
-                    <li><strong>Advanced Data Structures:</strong> Utilized complex structures (linked lists, queues) to manage dynamic playlists and sequential data access efficiently.</li>
-                    <li><strong>File I/O & Parsing:</strong> Developed robust file-handling algorithms to read, organize, and parse media metadata.</li>
-                    <li><strong>Modular Architecture:</strong> Applied clean software engineering principles to separate core system logic from user interaction.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+        <!-- ECRÃ 4: PROJECTS -->
+        <section class="screen" id="projects">
+            <div class="content-wrapper">
+                <h2 class="section-title">Featured <span>Projects</span></h2>
+                
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h4>Sequechat</h4>
+                        <span class="tech-stack">Systems & Network Programming | Kotlin</span>
+                        <p>A real-time, terminal-based messaging application focused on inter-process communication (IPC) and network synchronization.</p>
+                        <ul>
+                            <li><strong>Networking:</strong> Client-server architecture for concurrent connections.</li>
+                            <li><strong>Concurrency:</strong> Handled race conditions and synchronized data streams.</li>
+                            <li><strong>Systems-Level:</strong> Memory efficiency and OS integration.</li>
+                        </ul>
+                    </div>
 
-    <!-- EDUCAÇÃO -->
-    <section>
-        <h3 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h3>
-        <div class="timeline">
-            <div class="timeline-item">
-                <span class="timeline-date">2021 - 2026</span>
-                <h4 class="timeline-title">B.Sc. in Computer Engineering</h4>
-                <div class="timeline-subtitle">Polytechnic Institute of Tomar</div>
-                <div class="timeline-content">
-                    <p>Core focus: Network Administration, Cybersecurity, Operating Systems, and Systems Programming.</p>
+                    <div class="project-card">
+                        <h4>SequeMusic</h4>
+                        <span class="tech-stack">Data Structures & Systems Engineering</span>
+                        <p>An optimized media management application centered around sequential data processing and advanced data structures.</p>
+                        <ul>
+                            <li><strong>Structures:</strong> Linked lists and queues to manage dynamic playlists.</li>
+                            <li><strong>File I/O:</strong> Robust file-handling to parse media metadata.</li>
+                            <li><strong>Architecture:</strong> Clean separation of core logic from user interaction.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="timeline-item">
-                <span class="timeline-date">2018 - 2021</span>
-                <h4 class="timeline-title">Technical Degree in IT Equipment Management</h4>
-                <div class="timeline-subtitle">Tomar Professional School</div>
-                <div class="timeline-content">
-                    <p>Specialization in Computer Maintenance and Network Infrastructure Deployment.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- IDIOMAS -->
-    <section>
-        <h3 class="section-title"><i class="fas fa-globe"></i> Languages</h3>
-        <div class="skills-grid">
-            <div class="skill-badge">Portuguese (Native)</div>
-            <div class="skill-badge">English (Fluent - C2)</div>
-            <div class="skill-badge">Spanish (Basic - A2)</div>
-        </div>
-    </section>
-
-    <!-- RODAPÉ -->
-    <footer>
-        <p>© 2026 Guilherme Aires. Built for web.</p>
-    </footer>
-
-</div>
+    </div>
 
 </body>
 </html>
