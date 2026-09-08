@@ -43,7 +43,7 @@
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            background: rgba(3, 3, 3, 0.6);
+            background: rgba(3, 3, 3, 0.7);
             backdrop-filter: blur(10px);
         }
 
@@ -151,23 +151,23 @@
             white-space: nowrap;
         }
 
-        /* A tua foto integrada perfeitamente ao centro, com proporção e iluminação natural de fundo */
+        /* Fotografia com fusão perfeita e sem linhas de corte visíveis */
         .hero-center-img {
             position: absolute;
-            bottom: -5px;
+            bottom: -20px;
             left: 50%;
             transform: translateX(-50%);
-            height: 92vh;
+            height: 95vh;
             width: auto;
-            max-width: 55vw;
+            min-width: 60vw;
             object-fit: cover;
             object-position: top center;
             z-index: 2;
             pointer-events: none;
-            /* Mistura subtil e orgânica com o fundo sem parecer um recorte rígido */
-            mask-image: radial-gradient(circle at 50% 35%, black 50%, rgba(0,0,0,0.6) 80%, transparent 100%);
-            -webkit-mask-image: radial-gradient(circle at 50% 35%, black 50%, rgba(0,0,0,0.6) 80%, transparent 100%);
-            opacity: 0.95;
+            /* Gradiente radial largo que funde as laterais e a base suavemente no preto puro */
+            -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 35%, rgba(0,0,0,0.6) 65%, transparent 88%);
+            mask-image: radial-gradient(ellipse at 50% 30%, black 35%, rgba(0,0,0,0.6) 65%, transparent 88%);
+            opacity: 0.92;
         }
 
         .hero-left {
@@ -507,7 +507,7 @@
         <section class="screen" id="home">
             <div class="bg-text-massive">PORTFOLIO</div>
 
-            <!-- Imagem com fusão e proporção natural de retrato -->
+            <!-- Imagem com fade radial ultra-suave integrada no fundo escuro -->
             <img src="Portefolio.jpeg" alt="Guilherme Aires" class="hero-center-img">
 
             <div class="hero-left">
