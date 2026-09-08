@@ -513,7 +513,7 @@
             background: var(--accent-green);
         }
 
-        /* --- ECRÃ 3: PROJECTS (Grelha 2x2 Original) --- */
+        /* --- ECRÃ 3: PROJECTS --- */
         .content-container {
             max-width: 1100px;
             width: 100%;
@@ -550,6 +550,9 @@
             transition: 0.3s;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .project-card::before {
@@ -593,6 +596,7 @@
         .project-card ul {
             list-style: none;
             padding-left: 0;
+            margin-bottom: 1rem;
         }
 
         .project-card ul li {
@@ -607,6 +611,23 @@
             position: absolute;
             left: 0;
             color: var(--accent-green);
+        }
+
+        .project-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-green);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: 0.3s;
+            margin-top: auto;
+        }
+
+        .project-link-btn:hover {
+            opacity: 0.8;
+            transform: translateX(3px);
         }
 
         /* --- ECRÃ 4: CONTACT --- */
@@ -802,50 +823,70 @@
             </div>
         </section>
 
-        <!-- ECRÃ 3: PROJECTS -->
+        <!-- ECRÃ 3: PROJECTS COM LINKS DIRETOS DO GITHUB -->
         <section class="screen" id="projects">
             <div class="content-container">
                 <h2 class="section-title">Featured <span>Projects</span></h2>
                 <div class="projects-grid">
                     
                     <div class="project-card">
-                        <h3>Sequechat</h3>
-                        <span class="project-tag">Kotlin | Systems & Network Programming</span>
-                        <p>Real-time, terminal-based messaging application focused on inter-process communication (IPC) and network synchronization.</p>
-                        <ul>
-                            <li>Client-server architecture using standard sockets.</li>
-                            <li>Concurrency control and race condition handling.</li>
-                        </ul>
+                        <div>
+                            <h3>Sequechat</h3>
+                            <span class="project-tag">Kotlin | Systems & Network Programming</span>
+                            <p>Real-time, terminal-based messaging application focused on inter-process communication (IPC) and network synchronization.</p>
+                            <ul>
+                                <li>Client-server architecture using standard sockets.</li>
+                                <li>Concurrency control and race condition handling.</li>
+                            </ul>
+                        </div>
+                        <a href="https://github.com/L3gend776/Sequechat" target="_blank" class="project-link-btn">
+                            <i class="fab fa-github"></i> View Repository <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+                        </a>
                     </div>
 
                     <div class="project-card">
-                        <h3>Sensor-de-Humidade</h3>
-                        <span class="project-tag">Python | IoT & Automation</span>
-                        <p>Humidity sensor data monitoring and automation system designed for data gathering and system tracking.</p>
-                        <ul>
-                            <li>Python scripting for hardware data acquisition.</li>
-                            <li>Automation workflows for environmental tracking.</li>
-                        </ul>
+                        <div>
+                            <h3>Sensor-de-Humidade</h3>
+                            <span class="project-tag">Python | IoT & Automation</span>
+                            <p>Humidity sensor data monitoring and automation system designed for data gathering and system tracking.</p>
+                            <ul>
+                                <li>Python scripting for hardware data acquisition.</li>
+                                <li>Automation workflows for environmental tracking.</li>
+                            </ul>
+                        </div>
+                        <a href="https://github.com/L3gend776/Sensor-de-Humidade" target="_blank" class="project-link-btn">
+                            <i class="fab fa-github"></i> View Repository <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+                        </a>
                     </div>
 
                     <div class="project-card">
-                        <h3>SequeMusic</h3>
-                        <span class="project-tag">C# | Data Structures & Systems</span>
-                        <p>Optimized media management application centered around sequential data processing and advanced data structures.</p>
-                        <ul>
-                            <li>Advanced data structures (linked lists, custom queues).</li>
-                            <li>Robust file I/O algorithms for metadata parsing.</li>
-                        </ul>
+                        <div>
+                            <h3>SequeMusic</h3>
+                            <span class="project-tag">C# | Data Structures & Systems</span>
+                            <p>Optimized media management application centered around sequential data processing and advanced data structures.</p>
+                            <ul>
+                                <li>Advanced data structures (linked lists, custom queues).</li>
+                                <li>Robust file I/O algorithms for metadata parsing.</li>
+                            </ul>
+                        </div>
+                        <a href="https://github.com/L3gend776/SequeMusic" target="_blank" class="project-link-btn">
+                            <i class="fab fa-github"></i> View Repository <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+                        </a>
                     </div>
 
                     <div class="project-card">
-                        <h3>LACC_v2</h3>
-                        <span class="project-tag">Dart | Application Development</span>
-                        <p>Application development project utilizing modern cross-platform concepts and clean architectural practices.</p>
-                        <ul>
-                            <li>Modular code structure and component design.</li>
-                            <li>Clean user logic implementation.</li>
-                        </ul>
+                        <div>
+                            <h3>LACC_v2</h3>
+                            <span class="project-tag">Dart | Application Development</span>
+                            <p>Application development project utilizing modern cross-platform concepts and clean architectural practices.</p>
+                            <ul>
+                                <li>Modular code structure and component design.</li>
+                                <li>Clean user logic implementation.</li>
+                            </ul>
+                        </div>
+                        <a href="https://github.com/L3gend776/LACC_v2" target="_blank" class="project-link-btn">
+                            <i class="fab fa-github"></i> View Repository <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+                        </a>
                     </div>
 
                 </div>
