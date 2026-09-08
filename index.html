@@ -304,31 +304,54 @@
             animation: scrollWheel 2s infinite;
         }
 
-        /* --- ECRÃ 2: ABOUT ME (ESTILO EXATO DA REFERÊNCIA) --- */
+        /* --- ECRÃ 2: ABOUT ME (LAYOUT CORRIGIDO E EQUILIBRADO) --- */
         #about {
-            padding: 4rem 6rem;
+            padding: 5rem 6rem;
             justify-content: space-between;
             align-items: center;
             gap: 4rem;
         }
 
+        .about-image-wrapper {
+            position: relative;
+            height: 85vh;
+            width: 38vw;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        /* Brilho de fundo por trás da foto no About */
+        .about-image-wrapper::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 210, 138, 0.15) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
         .about-left-img {
-            height: 80vh;
+            height: 82vh;
             width: auto;
-            max-width: 35vw;
+            max-width: 100%;
             object-fit: cover;
             object-position: top center;
-            border-radius: 20px;
-            -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+            z-index: 1;
+            -webkit-mask-image: radial-gradient(circle at 50% 30%, black 50%, rgba(0,0,0,0.7) 75%, transparent 95%);
+            mask-image: radial-gradient(circle at 50% 30%, black 50%, rgba(0,0,0,0.7) 75%, transparent 95%);
         }
 
         .about-right-content {
             flex: 1;
-            max-width: 650px;
+            max-width: 620px;
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1.2rem;
         }
 
         .about-header-row {
@@ -339,7 +362,7 @@
 
         .about-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             font-weight: 900;
             line-height: 1;
         }
@@ -348,88 +371,88 @@
         }
 
         .problem-solver-label {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
             letter-spacing: 1px;
             position: relative;
-            padding-left: 25px;
+            padding-left: 20px;
         }
         .problem-solver-label::before {
             content: '';
             position: absolute;
             left: 0;
             top: 50%;
-            width: 15px;
+            width: 12px;
             height: 2px;
             background-color: var(--accent-green);
         }
 
         .about-bio {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             line-height: 1.6;
-            font-family: monospace; /* Dá o aspeto técnico da referência */
+            font-family: monospace;
         }
 
         /* 4 Cartões de Especialidade */
         .about-cards-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
+            gap: 0.8rem;
         }
 
         .about-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.2rem;
+            border-radius: 10px;
+            padding: 1rem;
             transition: 0.3s ease;
         }
         .about-card:hover {
             border-color: var(--accent-green);
-            transform: translateY(-3px);
+            transform: translateY(-2px);
         }
 
         .about-card i {
             color: var(--accent-green);
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
             display: block;
         }
 
         .about-card h4 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.95rem;
-            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
             color: var(--text-main);
         }
 
         .about-card p {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
-            line-height: 1.4;
+            line-height: 1.3;
         }
 
         /* Bloco de Citação */
         .about-quote {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .about-quote p {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
             font-style: italic;
             max-width: 90%;
         }
         .about-quote i {
             color: var(--accent-green);
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
         /* Estatísticas */
@@ -438,32 +461,32 @@
             grid-template-columns: repeat(4, 1fr);
             gap: 1rem;
             border-top: 1px solid var(--border);
-            padding-top: 1rem;
+            padding-top: 0.8rem;
         }
 
         .stat-item h3 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             color: var(--text-main);
         }
         .stat-item p {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--text-muted);
             letter-spacing: 1px;
             text-transform: uppercase;
         }
 
-        /* Línguas */
+        /* Idiomas */
         .languages-section {
             border-top: 1px solid var(--border);
-            padding-top: 1rem;
+            padding-top: 0.8rem;
         }
         .languages-title {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--accent-green);
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.6rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -472,32 +495,32 @@
         .lang-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
+            gap: 0.8rem;
         }
 
         .lang-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
-            padding: 0.8rem;
+            padding: 0.6rem 0.8rem;
             border-radius: 8px;
         }
 
         .lang-card h5 {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-main);
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.1rem;
         }
 
         .lang-card span {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--text-muted);
         }
 
         .lang-bar {
             width: 100%;
-            height: 3px;
+            height: 2px;
             background: var(--border);
-            margin-top: 0.5rem;
+            margin-top: 0.4rem;
             border-radius: 2px;
             overflow: hidden;
         }
@@ -650,7 +673,7 @@
             #home, #about { flex-direction: column; padding: 6rem 2rem 2rem; justify-content: flex-start; text-align: center; height: auto; }
             .hero-left, .hero-right, .about-right-content { width: 100%; text-align: center; margin: 0; }
             .hero-right { margin-top: 1rem; }
-            .hero-center-img, .about-left-img { height: 45vh; max-width: 80vw; }
+            .hero-center-img, .about-image-wrapper { height: 45vh; width: 80vw; }
             .about-cards-grid, .lang-grid, .projects-grid, .contact-box { grid-template-columns: 1fr; }
             .about-header-row { flex-direction: column; align-items: center; gap: 0.5rem; }
         }
@@ -704,9 +727,11 @@
             </div>
         </section>
 
-        <!-- ECRÃ 2: ABOUT ME (ESTILO DA REFERÊNCIA) -->
+        <!-- ECRÃ 2: ABOUT ME (LAYOUT CORRIGIDO E EQUILIBRADO) -->
         <section class="screen" id="about">
-            <img src="Portefolio.jpeg" alt="Guilherme Aires" class="about-left-img">
+            <div class="about-image-wrapper">
+                <img src="Portefolio.jpeg" alt="Guilherme Aires" class="about-left-img">
+            </div>
 
             <div class="about-right-content">
                 <div class="about-header-row">
