@@ -11,10 +11,10 @@
     
     <style>
         :root {
-            --bg-base: #030303; /* Preto profundo */
+            --bg-base: #030303;
             --bg-surface: #0a0a0a;
-            --accent-green: #00d28a; /* Verde da imagem */
-            --accent-purple: #6a5acd; /* Roxo da imagem */
+            --accent-green: #00d28a;
+            --accent-purple: #6a5acd;
             --text-main: #ffffff;
             --text-muted: #9ca3af;
             --border: #222222;
@@ -34,7 +34,7 @@
             height: 100vh;
         }
 
-        /* --- NAVEGAÇÃO DE TOPO (BARRA) --- */
+        /* --- NAVEGAÇÃO DE TOPO --- */
         .navbar {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -43,6 +43,8 @@
             justify-content: space-between;
             align-items: center;
             z-index: 100;
+            background: rgba(3, 3, 3, 0.8);
+            backdrop-filter: blur(10px);
         }
 
         .logo {
@@ -58,25 +60,30 @@
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             list-style: none;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.3rem;
+            border-radius: 30px;
+            border: 1px solid var(--border);
         }
 
         .nav-links a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 1.2rem;
             border-radius: 20px;
             transition: all 0.3s ease;
         }
 
         .nav-links a.active, .nav-links a:hover {
             color: var(--text-main);
-            background-color: rgba(0, 210, 138, 0.1);
+            background-color: rgba(0, 210, 138, 0.15);
+            color: var(--accent-green);
         }
 
         .btn-resume {
@@ -93,8 +100,9 @@
         }
 
         .btn-resume:hover {
-            border-color: var(--text-main);
-            background-color: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent-green);
+            background-color: rgba(0, 210, 138, 0.05);
+            color: var(--accent-green);
         }
 
         /* --- SISTEMA DE SCROLL (TELA INFINITA) --- */
@@ -112,18 +120,22 @@
             width: 100%;
             scroll-snap-align: start;
             position: relative;
-        }
-
-        /* --- PRIMEIRA PÁGINA: HERO SECTION (RÉPLICA DA IMAGEM) --- */
-        #home {
             display: flex;
             align-items: center;
+            justify-content: center;
+        }
+
+        .screen:nth-child(even) {
+            background-color: var(--bg-surface);
+        }
+
+        /* --- ECRÃ 1: HERO SECTION --- */
+        #home {
             justify-content: space-between;
             padding: 0 6rem;
             overflow: hidden;
         }
 
-        /* Texto GIGANTE de Fundo */
         .bg-text-massive {
             position: absolute;
             top: 50%;
@@ -132,49 +144,41 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: 16vw;
             font-weight: 900;
-            color: rgba(255, 255, 255, 0.03);
+            color: rgba(255, 255, 255, 0.02);
             z-index: 0;
             pointer-events: none;
             white-space: nowrap;
         }
 
-        /* Container da Foto no Centro */
+        /* Foto com fundo transparente ajustada */
         .hero-center-img {
             position: absolute;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            height: 85vh;
+            height: 78vh;
             width: auto;
-            max-width: 45vw;
             z-index: 1;
-            /* Máscara para suavizar as bordas quadradas da tua foto e misturar no fundo preto */
-            mask-image: radial-gradient(circle at top, black 50%, transparent 100%);
-            -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 40%, transparent 80%);
-            object-fit: cover;
-            object-position: top;
-            opacity: 0.9;
+            object-fit: contain;
+            filter: drop-shadow(0 0 30px rgba(0, 210, 138, 0.15));
         }
 
-        /* Bloco Esquerdo (GREETING) */
         .hero-left {
             position: relative;
             z-index: 2;
             width: 35%;
-            margin-top: -3rem;
-            animation: fadeInLeft 1s ease-out;
+            margin-top: 2rem;
         }
 
         .hero-left h1 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 3rem;
+            font-size: 2.8rem;
             line-height: 1.1;
-            margin-bottom: 0;
         }
 
         .hero-left .first-name {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 5.5rem;
+            font-size: 5rem;
             font-weight: 900;
             color: var(--accent-green);
             line-height: 1;
@@ -184,7 +188,7 @@
 
         .hero-left .last-name {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 4.5rem;
+            font-size: 4rem;
             font-weight: 900;
             color: var(--text-main);
             line-height: 1;
@@ -197,12 +201,7 @@
             font-size: 0.95rem;
             line-height: 1.6;
             max-width: 90%;
-            margin-bottom: 2.5rem;
-        }
-
-        .hero-left p span {
-            color: var(--text-muted);
-            font-weight: 600;
+            margin-bottom: 2rem;
         }
 
         .hero-buttons {
@@ -229,20 +228,18 @@
             color: var(--accent-green);
         }
 
-        /* Bloco Direito (ROLES) */
         .hero-right {
             position: relative;
             z-index: 2;
             width: 35%;
             text-align: right;
             align-self: flex-end;
-            margin-bottom: 10vh;
-            animation: fadeInRight 1s ease-out;
+            margin-bottom: 12vh;
         }
 
         .hero-right h2 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--accent-purple);
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -251,14 +248,13 @@
 
         .hero-right h3 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 900;
             color: var(--text-main);
             line-height: 1.1;
             text-transform: uppercase;
         }
 
-        /* Indicador de Rato (Bottom) */
         .scroll-mouse {
             position: absolute;
             bottom: 2rem;
@@ -295,62 +291,191 @@
             animation: scrollWheel 2s infinite;
         }
 
-        /* Theme button (Bottom Right) */
-        .theme-btn {
-            position: absolute;
-            bottom: 2rem;
-            right: 4rem;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #1a1a1a;
-            display: flex;
+        /* --- ECRÃS INTERNOS (ABOUT, PROJECTS, CONTACT) --- */
+        .content-container {
+            max-width: 1100px;
+            width: 100%;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        .section-title span {
+            color: var(--accent-green);
+        }
+
+        /* About / Skills Grid */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
             align-items: center;
-            justify-content: center;
-            color: white;
-            cursor: pointer;
-            z-index: 10;
-            border: none;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .skills-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-chip {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-family: 'Space Grotesk', sans-serif;
             transition: 0.3s;
         }
-        .theme-btn:hover { background-color: #333; }
+        .skill-chip:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+            transform: translateY(-2px);
+        }
 
-        /* --- ANIMAÇÕES --- */
-        @keyframes fadeInLeft {
-            from { opacity: 0; transform: translateX(-30px); }
-            to { opacity: 1; transform: translateX(0); }
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
         }
-        @keyframes fadeInRight {
-            from { opacity: 0; transform: translateX(30px); }
-            to { opacity: 1; transform: translateX(0); }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
         }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: var(--accent-green);
+            transform: scaleX(0);
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: #333;
+        }
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tag {
+            font-size: 0.8rem;
+            color: var(--accent-green);
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+
+        .project-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .project-card ul li {
+            color: #d1d5db;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+        .project-card ul li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+        }
+
+        /* Contact Section */
+        .contact-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .contact-info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 1.2rem 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-decoration: none;
+            color: var(--text-main);
+            transition: 0.3s;
+        }
+
+        .contact-item:hover {
+            border-color: var(--accent-green);
+            transform: translateX(5px);
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--accent-green);
+        }
+
+        .contact-item span {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            display: block;
+        }
+
+        /* Animações */
         @keyframes scrollWheel {
             0% { top: 6px; opacity: 1; }
             100% { top: 18px; opacity: 0; }
         }
 
-        /* --- ECRÃ 2, 3, 4 (SIMPLIFICADOS TEMPORARIAMENTE PARA MANTER FUNCIONAMENTO) --- */
-        .other-screen {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--bg-surface);
-            padding: 4rem;
-        }
-        .other-screen:nth-child(even) { background-color: var(--bg-base); }
-        .content-box { max-width: 900px; width: 100%; text-align: center;}
-        .content-box h2 { font-size: 2.5rem; margin-bottom: 2rem; font-family: 'Space Grotesk'; }
-
-        /* --- RESPONSIVIDADE --- */
+        /* Responsividade */
         @media (max-width: 1024px) {
             .navbar { padding: 1.5rem 2rem; }
-            .nav-links { display: none; } /* Esconde links no mobile por agora */
+            .nav-links { display: none; }
             #home { flex-direction: column; padding: 6rem 2rem 2rem; justify-content: flex-start; text-align: center; }
-            .bg-text-massive { font-size: 20vw; }
-            .hero-left, .hero-right { width: 100%; text-align: center; margin: 0; z-index: 5; }
-            .hero-right { align-self: center; margin-top: 2rem; }
-            .hero-buttons { justify-content: center; }
-            .hero-center-img { opacity: 0.3; bottom: 10%; height: 60vh; } /* No mobile, a foto fica como fundo aguado */
+            .hero-left, .hero-right { width: 100%; text-align: center; margin: 0; }
+            .hero-right { margin-top: 1rem; }
+            .hero-center-img { height: 50vh; bottom: 15%; opacity: 0.4; }
+            .about-grid, .projects-grid, .contact-box { grid-template-columns: 1fr; gap: 2rem; }
         }
     </style>
 </head>
@@ -361,71 +486,138 @@
         <div class="logo">GUILHERME<span>.</span></div>
         <ul class="nav-links">
             <li><a href="#home" class="active">HOME</a></li>
-            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#about">ABOUT & SKILLS</a></li>
             <li><a href="#projects">PROJECTS</a></li>
             <li><a href="#contact">CONTACT</a></li>
         </ul>
-        <a href="#" class="btn-resume"><i class="fas fa-external-link-alt"></i> RESUME</a>
+        <a href="mailto:guilhermeaires2003@gmail.com" class="btn-resume"><i class="fas fa-external-link-alt"></i> RESUME</a>
     </nav>
 
-    <!-- CONTAINER DE SCROLL -->
+    <!-- CONTAINER DE SCROLL INFINITO -->
     <div class="scroll-container">
 
-        <!-- ECRÃ 1: HERO SECTION -->
+        <!-- ECRÃ 1: HOME -->
         <section class="screen" id="home">
-            
             <div class="bg-text-massive">PORTFOLIO</div>
 
-            <!-- Coluna Esquerda -->
             <div class="hero-left">
                 <h1>Hi I'm</h1>
                 <span class="first-name">Guilherme</span>
                 <span class="last-name">Aires</span>
-                <p>I blend structured engineering with deep networking knowledge to build secure, robust infrastructures. <span>Specializing in</span> Cybersecurity and Systems Administration.</p>
+                <p>I blend structured engineering with deep networking knowledge to build secure, robust infrastructures. Specializing in Cybersecurity and Systems Administration.</p>
                 
                 <div class="hero-buttons">
-                    <a href="#" class="btn-outline"><i class="fas fa-external-link-alt"></i> View Resume</a>
+                    <a href="#contact" class="btn-outline"><i class="fas fa-envelope"></i> Get in Touch</a>
                     <a href="#projects" class="btn-outline"><i class="fas fa-briefcase"></i> View Projects</a>
                 </div>
             </div>
 
-            <!-- Imagem Central -->
+            <!-- Foto com fundo transparente aplicada -->
             <img src="Portefolio.jpeg" alt="Guilherme Aires" class="hero-center-img">
 
-            <!-- Coluna Direita -->
             <div class="hero-right">
                 <h2>COMPUTER ENGINEER</h2>
                 <h3>NETWORK<br>ADMIN</h3>
             </div>
 
-            <!-- Indicador Scroll -->
             <div class="scroll-mouse">
                 <div class="mouse-icon">
                     <div class="mouse-wheel"></div>
                 </div>
                 Scroll Down
             </div>
-
-            <!-- Botão de Tema (Decorativo) -->
-            <button class="theme-btn"><i class="fas fa-palette"></i></button>
         </section>
 
-        <!-- ECRÃ 2: ABOUT / SKILLS (MANTIDO PARA NÃO PERDER CONTEÚDO) -->
-        <section class="screen other-screen" id="about">
-            <div class="content-box">
-                <h2>My <span>Skills</span></h2>
-                <p>Linux & Windows SysAdmin | TCP/IP Network Engineering | Cybersecurity | Bash & Python | VMware Virtualization</p>
-                <br>
-                <p style="color: #9ca3af; font-size: 0.9rem;">(A trabalhar nas próximas páginas na próxima fase)</p>
+        <!-- ECRÃ 2: ABOUT & SKILLS -->
+        <section class="screen" id="about">
+            <div class="content-container">
+                <h2 class="section-title">About & <span>Skills</span></h2>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p>B.Sc. Graduate in Computer Engineering from the Polytechnic Institute of Tomar, with a strong focus and interest in Networking, IT Infrastructure, and Cybersecurity.</p>
+                        <p>Proven ability to work effectively in team environments, possessing excellent communication skills and a high capacity for adapting to new technological challenges.</p>
+                        <p style="color: var(--accent-green); font-weight: 600;">Languages: Portuguese (Native), English (Fluent - C2), Spanish (Basic - A2).</p>
+                    </div>
+                    <div class="skills-flex">
+                        <div class="skill-chip">Linux & Windows SysAdmin</div>
+                        <div class="skill-chip">TCP/IP Network Engineering</div>
+                        <div class="skill-chip">Cybersecurity & SecOps</div>
+                        <div class="skill-chip">Bash & Python Automation</div>
+                        <div class="skill-chip">VMware & Virtualization</div>
+                        <div class="skill-chip">Hardware Troubleshooting</div>
+                        <div class="skill-chip">Teamwork & Fast Adaptation</div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- ECRÃ 3: PROJECTS -->
-        <section class="screen other-screen" id="projects">
-            <div class="content-box">
-                <h2>Featured <span>Projects</span></h2>
-                <p><strong>Sequechat:</strong> Systems & Network Programming | Kotlin</p>
-                <p><strong>SequeMusic:</strong> Data Structures & Systems Engineering</p>
+        <section class="screen" id="projects">
+            <div class="content-container">
+                <h2 class="section-title">Featured <span>Projects</span></h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>Sequechat</h3>
+                        <span class="project-tag">Systems & Network Programming | Kotlin</span>
+                        <p>Real-time, terminal-based messaging application focused on inter-process communication (IPC) and network synchronization.</p>
+                        <ul>
+                            <li>Client-server architecture using standard sockets.</li>
+                            <li>Concurrency control and race condition handling.</li>
+                            <li>Low-level memory efficiency and OS integration.</li>
+                        </ul>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>SequeMusic</h3>
+                        <span class="project-tag">Data Structures & Systems Engineering</span>
+                        <p>Optimized media management application centered around sequential data processing and advanced data structures.</p>
+                        <ul>
+                            <li>Advanced data structures (linked lists, custom queues).</li>
+                            <li>Robust file I/O algorithms for metadata parsing.</li>
+                            <li>Modular architecture for clean separation of logic.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ECRÃ 4: CONTACT -->
+        <section class="screen" id="contact">
+            <div class="content-container">
+                <h2 class="section-title">Let's <span>Connect</span></h2>
+                <div class="contact-box">
+                    <div>
+                        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem; font-size: 1.1rem;">
+                            I am currently open to new opportunities in Computer Engineering, Network Administration, and Cybersecurity. Feel free to reach out via email or connect through my professional profiles.
+                        </p>
+                        <div style="font-family: 'Space Grotesk'; font-size: 1.2rem; color: var(--accent-green);">
+                            Entroncamento, Portugal
+                        </div>
+                    </div>
+                    <div class="contact-info-list">
+                        <a href="mailto:guilhermeaires2003@gmail.com" class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">Email Me</span>
+                                <strong>guilhermeaires2003@gmail.com</strong>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/guilherme-aires10" target="_blank" class="contact-item">
+                            <i class="fab fa-linkedin"></i>
+                            <div>
+                                <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">LinkedIn Profile</span>
+                                <strong>guilherme-aires10</strong>
+                            </div>
+                        </a>
+                        <a href="https://github.com/L3gend776" target="_blank" class="contact-item">
+                            <i class="fab fa-github"></i>
+                            <div>
+                                <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">GitHub Repository</span>
+                                <strong>L3gend776</strong>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
